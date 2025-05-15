@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <title>لقد استلمنا طلبك بنجاح في NexuMind</title>
+    <style>
+        @font-face {
+            font-family: 'Helvetica';
+            src: url('../public/fonts/Helvetica.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        body {
+            font-family: Helvetica, sans-serif;
+            font-weight: 400;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            padding: 24px;
+            direction: rtl;
+        }
+
+        h1 {
+            padding: 0;
+            margin: 0;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .img-container,
+        footer {
+            margin: auto;
+            max-width: 600px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .img-logo {
+            width: 167px;
+            height: 40px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background: linear-gradient(270deg, #6EC1EA 0%, #5778BA 100%);
+            color: #fff;
+            padding: 24px 16px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        footer {
+            margin: auto;
+            max-width: 600px;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .footer p {
+            color: var(--Dark-Grey, rgba(154, 158, 166, 1));
+            text-align: center;
+            padding: 0px;
+            margin-top: 24px;
+            margin-bottom: 0px;
+            font-size: 12px;
+        }
+
+        .content {
+            font-size: 16px;
+            line-height: 28px;
+            font-weight: 400;
+            padding: 20px;
+        }
+
+        .content p {
+            margin: 10px 0;
+        }
+
+        .content strong {
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="img-container">
+        <Image class="img-logo" src="https://nexumind.com/img/Logo.svg" alt="NexuMind Logo">
+    </div>
+    <div class="container">
+        <div class="header">
+            <h1>لقد استلمنا طلبك بنجاح في NexuMind</h1>
+        </div>
+        <div class="content">
+            <p>مرحبًا {{fullName}}،</p>
+            <p>يسرنا تأكيد استلام طلبك للحصول على عرض توضيحي لنظام إدارة المعرفة الذكي الخاص بنا.</p>
+            <p>نشكر لك تواصلك معنا.</p>
+            <p>معلوماتك:</p>
+            <ul>
+                <li><strong>الاسم الكامل:</strong> {{fullName}}</li>
+                <li><strong>المسمى الوظيفي:</strong> {{jobTitle}}</li>
+                <li><strong>اسم الشركة:</strong> {{companyName}}</li>
+      
+            </ul>
+            <p>سنتواصل معك قريبًا لتحديد موعد لمكالمة تعريفية قصيرة، والإجابة على أسئلتك المحددة، وتزويدك بالمعلومات
+                التي طلبتها.</p>
+       
+            <p>وفي هذه الأثناء، ندعوك لزيارة موقعنا الإلكتروني على:</p>
+            <p> <a href="https://nexumind.com/">https://nexumind.com</a></p>
+            <p>للتعرف على المزيد حول NexuMind والخدمات التي نقدمها.</p>
+            <br>
+            <p>مع أطيب التحيات،</p>
+            <p>فريق NexuMind</p>
+        </div>
+    </div>
+    <div class="footer">
+        <p>© 2024 NexuMind. جميع الحقوق محفوظة.</p>
+    </div>
+</body>
+
+</html>

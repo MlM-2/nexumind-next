@@ -1,0 +1,227 @@
+
+body {
+  font-family: "Tajawal", sans-serif !important;
+}
+
+#landingPage {
+  background-image: url("/img/newBottomHalf-ar.png"), url("/img/newTopHalf-ar.png") !important;
+  background-position: bottom right, top left !important;
+}
+
+#landingPage > .landing-page-img {
+  border-radius: 0px 25% 0px 0px !important;
+  transform: rotate(-9deg) !important;
+}
+#landingPage > .landing-page-img > img {
+  -webkit-transform: scaleX(-1) !important;
+  transform: scaleX(-1) !important;
+}
+
+@media (max-width:991px){
+
+.about-us-section .content {
+  text-align: right !important;
+}
+
+.product {
+  margin-right: 0px;
+}
+.product .product-title {
+  font-size: 4rem;
+  align-items: right;
+  text-align: right;
+}
+.product .product-desc {
+  text-align: right;
+}
+
+
+.input-container {
+  text-align: right;
+}
+
+
+.input-field {
+  text-align: right;
+}
+
+.phone-container> .react-tel-input> .form-control {
+  padding-right: 6rem;
+  text-indent: 4rem;
+  unicode-bidi:bidi-override;
+  text-align: right;
+}
+.phone-container> .react-tel-input> .flag-dropdown{
+  margin-right: 2px;
+}
+
+.react-tel-input input{
+  background-color: red;
+  padding-right: 60px;
+}
+.phone-container> .react-tel-input> .flag-dropdown> .selected-flag> .flag > .arrow{
+  right: 3rem;
+}
+.country-list{
+  font-family: "Tajawal", sans-serif;
+  text-align: right;
+  cursor: pointer;
+}
+
+
+.modal {
+  direction: ltr;
+}
+.btn {
+  text-align: rigth;
+  color: red;
+}
+
+
+.modal-body {
+  direction: rtl;
+}
+
+.invalid-feedback {
+  text-align: right;
+}
+
+.social-icons-div {
+  text-align: left;
+}
+
+
+.PrivacyPolicyContainer,
+.TermsAndConditionsContainer
+{
+  background-image: url("/img/newBottomHalf-ar.png"), url("/img/newTopHalf-ar.png");
+  background-position: bottom right, top left;
+}
+}
+@media (min-width: 576px) and (max-width: 767px) {
+
+  #landingPage > .landing-page-img {
+    left: -3.8rem;
+  }
+  .about-us-section {
+    margin-right: -0.7rem;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+ .about-us-section .about-us-section-bg {
+    align-items: right;
+  }
+
+
+  .about-us-section .title {
+    text-align: right;
+    line-height: 8rem;
+  }
+
+  .about-us-section .content {
+    align-items: right;
+  }
+
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+  #navbarNav > ul {
+    margin-right: auto;
+  }
+
+  #landingPage > .landing-page-img {
+    left: -3.8rem;
+  }
+
+  #landingPage > .landing-page-text {
+    right:5%;
+  }
+
+  .about-us-section .about-us-section-bg {
+    left: 0rem;
+  }
+
+  .about-us-section .about-us-section-img-container {
+    right: 0rem;
+  }
+
+  .about-us-section .title {
+    text-align: right;
+  }
+
+
+  .about-us-section .content {
+    align-items: right;
+  }
+
+
+  #aboutUs {
+    margin-right: 1rem;
+  }
+
+  .error {
+    font-size: 0.6rem !important;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+  #navbarNav > ul {
+    margin-right: auto;
+  }
+
+  #landingPage > .landing-page-img {
+    left: -3.8rem;
+  }
+
+  #landingPage > .landing-page-text {
+    right: 5%;
+  }
+
+  #aboutUs {
+    margin-right: 1rem;
+  }
+  .about-us-section {
+    padding-top: 10rem;
+  }
+
+  .about-us-section .title {
+    text-align: right;
+  }
+
+
+  .about-us-section .content {
+    align-items: right;
+  }
+}
+
+@media (min-width: 1400px) {
+
+  #navbarNav > ul {
+    margin-right: auto;
+  }
+
+  #landingPage > .landing-page-img {
+    left: -3.8rem;
+  }
+
+  #landingPage > .landing-page-text {
+    right:5%;
+  }
+
+  .about-us-section .title {
+    text-align: right;
+  }
+
+  .about-us-section .content {
+    align-items: right;
+
+  }
+
+  #products .products-title {
+    font-size: 6.2rem;
+  }
+}

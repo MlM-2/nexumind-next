@@ -1,0 +1,21 @@
+User-agent: *
+Disallow: /
+
+# Allow the root URL
+Allow: /$
+
+# Allow common pages in all languages
+Allow: /aboutUs
+Allow: /terms
+Allow: /privacy
+Allow: /solutions
+Allow: /products
+Allow: /getStarted
+Allow: /news
+Allow: /news/arabic-ai-shopping-assistant-launch
+
+# Allow language-specific pages dynamically
+Allow: /ar/
+Allow: /en/
+
+Sitemap: /sitemap.xml

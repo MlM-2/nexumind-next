@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Request Received</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #333;
+        }
+        .content {
+            padding: 20px;
+        }
+        .content h2 {
+            font-size: 20px;
+            color: #333;
+        }
+        .content p {
+            margin: 10px 0;
+            color: #555;
+        }
+        .content .field {
+            font-weight: bold;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+            margin-top: 20px;
+        }
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>New Request Received for NexuMind</h1>
+        </div>
+        <div class="content">
+            <h2>Request Details</h2>
+            <p><span class="field">Full Name:</span> {{fullName}}</p>
+            <p><span class="field">Company Name:</span> {{companyName}}</p>
+            <p><span class="field">Job Title:</span> {{jobTitle}}</p>
+            <p><span class="field">Bussiness Email: </span> {{email}}</p>
+            <p><span class="field">Phone:</span> {{phone}}</p>
+            <p><span class="field">Message:</span> {{message}}</p>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 NexuMind. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

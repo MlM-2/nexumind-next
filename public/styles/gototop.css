@@ -1,0 +1,48 @@
+/* NavBar.css */
+  
+  .navbar-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Go to Top Icon */
+  .go-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color:var(--primary-color);
+    color:  #ddd;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    opacity: .7;
+    z-index: 1000; /* Ensure it's above all other content */
+    height: 4rem;
+    width: 4rem;
+  }
+  
+  /* Bootstrap Icon Styling */
+  .go-to-top .bi {
+    font-size: 24px;
+  }
+  
+  .go-to-top:hover {
+    opacity: 1;
+    transform: scale(1.25) !important; /* Scale effect on hover */
+  }
+  
+  @media (max-width: 768px) {
+    .go-to-top {
+      font-size: 20px;
+      padding: 8px;
+      bottom: 75px;
+      right: 15px;
+    }
+  }
+  
