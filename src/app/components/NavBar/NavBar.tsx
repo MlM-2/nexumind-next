@@ -84,7 +84,7 @@ function NavBar() {
   };
 
   const handleLanguageChange = () => {
-    const preservedSections = ['aboutUs', 'products', 'solutions','news'];
+    const preservedSections = ['aboutUs', 'products', 'solutions','news','getStarted'];
 
     if (currentLang === 'ar' && pathname.includes('/news/arabic-')) {
       const slug = pathname.split('/news/arabic-')[1];
@@ -144,7 +144,7 @@ function NavBar() {
     const id = linkValue.replace("/", "").replace("#", "");
     console.log(pathname);
   
-    const allowedPaths = ["/en", "/ar", "/", "/aboutUs", "/solutions", "/news", "/products"];
+    const allowedPaths = ["/en", "/ar", "/", "/aboutUs", "/solutions", "/news", "/products" ,"/getStarted"];
   
     const isAllowedPath = allowedPaths.includes(pathname);
   
@@ -191,6 +191,7 @@ function NavBar() {
               className="logo-icon"
               src="/img/Logo.svg"
               alt="NexuMind Logo"
+              style={{ width: '100%', height: 'auto' }} 
             />
           </a>
           {/* Minimal placeholder content during initial render */}
@@ -274,7 +275,7 @@ function NavBar() {
                   id="lang-icon"
                   variants={itemVariants}
                   transition={{ duration: 0.5 }}
-                  className="nav-item"
+                  className="navbar-nav mb-md-2 mb-lg-0 nav-item"
                 >
                   <button 
                     onClick={handleLanguageChange}

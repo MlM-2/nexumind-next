@@ -1,4 +1,4 @@
-/* استايل إضافي لعنصر التحميل */
+
 .loading-placeholder {
   display: flex;
   justify-content: center;
@@ -11,7 +11,7 @@
   margin: 20px 0;
 }
 
-/* استايل لحاوية reCAPTCHA */
+
 #recaptcha-badge-container,
 #recaptcha-badge-container-fallback {
   display: inline-block;
@@ -22,7 +22,7 @@
   text-align: center;
 }
 
-/* إخفاء الشارة بشكل افتراضي ولكن إظهارها عند الحاجة */
+
 .grecaptcha-badge {
   visibility: hidden;
   opacity: 0;
@@ -34,7 +34,6 @@
   opacity: 1;
 }
 
-/* تحسين مظهر الـ alert */
 .alert-danger {
   background-color: #f8d7da;
   color: #721c24;

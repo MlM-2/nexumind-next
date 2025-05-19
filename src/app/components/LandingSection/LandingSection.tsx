@@ -5,11 +5,40 @@ import { motion } from "framer-motion";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { useTranslations , useLocale } from 'next-intl';
+import {  usePathname } from "../../../i18n/navigation";
+import { useState } from "react";
+import Link from "next/link";
 
 
 const LandingSection = () => {
-  const  t  = useTranslations();
-  const currentLang = useLocale();
+
+const pathname = usePathname();
+const [, setActiveSection] = useState<string | null>(null);
+const currentLang = useLocale();
+const  t  = useTranslations();
+
+
+
+  const handleNavLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, linkValue: string) => {
+    e.preventDefault();
+    const id = linkValue.replace("/", "").replace("#", "");
+    console.log(pathname);
+  
+    const allowedPaths = ["/en", "/ar", "/", "/aboutUs", "/solutions", "/news", "/products" ,"/getStarted"];
+  
+    const isAllowedPath = allowedPaths.includes(pathname);
+  
+    const targetElement = document.getElementById(id);
+  
+    if (targetElement && isAllowedPath) {
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setActiveSection(id);
+      window.history.pushState({}, '', `/${currentLang}/${id}`);
+    } else {
+      sessionStorage.setItem('scrollToId', id);
+      window.location.href = `/${currentLang}`;
+    }
+  };
 
   return (
     <motion.section
@@ -37,14 +66,13 @@ const LandingSection = () => {
           className="display-1 fs-1 fs-md-2 fs-lg-4"
         >
           {t("lead")}
-          {/* <a
-            href={"/" + i18n.language + "/getStarted"}
+          <Link
+     
             className="button"
-            onClick={(e) => handleLinkClick2(e, "/getStarted")}
-            aria-label="Get Started"
-          >
+            onClick={(e) => handleNavLinkClick(e, "/getStarted")}
+            aria-label="Get Started" href={""}          >
             <span className="button-text">{t("get_started")}</span>
-          </a> */}
+          </Link>
         </motion.p>
       </div>
       <div className="landing-page-img">
@@ -75,7 +103,7 @@ const LandingSection = () => {
             alt="Revolutionizing the Future with AI"
             effect="blur" // Enables the blur effect while loading
             width="100%" // Adjust based on your layout needs
-            height="auto"
+            height="100%"
             visibleByDefault={true} // Ensures the image is visible by default
           />
         </motion.div>
