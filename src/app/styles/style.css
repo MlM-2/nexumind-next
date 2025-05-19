@@ -1460,3 +1460,7 @@ footer > .footer-content > .line-two {
 .app-content {
   display: block;
 }
+
+.grecaptcha-badge {
+   display: none !important;
+  }

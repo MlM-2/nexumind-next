@@ -24,7 +24,7 @@ const MainComponents = () => {
       <Solutions />
       <Products />
        <News />
-      <GoogleReCaptchaProvider
+       <GoogleReCaptchaProvider
         reCaptchaKey={process.env.NEXT_PUBLIC_CAPTCHA_KEY || ""}
         language={currentLang === "ar" ? "ar" : "ar"}
         container={{

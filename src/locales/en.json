@@ -75,8 +75,8 @@
   "modal_fail_header": "Sorry!",
   "modal_success_message": "Your message has been received.<br/> A member of our team will contact you as soon as possible. <br/>Thank you for your patience.",
   "modal_fail_message": "There was an error submitting your form. <br/>Please try again later.",
-  "modal_success_img_url": "./img/success.gif",
-  "modal_fail_img_url": "./img/fail.gif",
+  "modal_success_img_url": "/img/success.gif",
+  "modal_fail_img_url": "/img/fail.gif",
   "footer_line1": [
     { "text": "Terms & Conditions", "url": "/terms" },
     { "text": "Privacy Policy", "url": "/privacy" }

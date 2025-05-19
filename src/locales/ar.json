@@ -84,8 +84,8 @@
   "modal_fail_header": "عذراً.",
   "modal_success_message": "تم استلام رسالتك بنجاح وسيتواصل معك أحد أعضاء فريقنا في أقرب وقت ممكن.<br/>نشكرك على صبرك.",
   "modal_fail_message": "حدث خطأ أثناء الإرسال.<br/> يُرجى المحاولة مرة أخرى لاحقًا.",
-  "modal_success_img_url": "./img/success.gif",
-  "modal_fail_img_url": "./img/fail.gif",
+  "modal_success_img_url": "/img/success.gif",
+  "modal_fail_img_url": "/img/fail.gif",
 
   "Metadata": {
     "title": "NexuMind",

@@ -4,23 +4,19 @@ import { motion, useInView } from "framer-motion";
 import React from "react";
 // import { getNews } from "../../utils/getNews";
 // import { NewsItem } from "../../utils/getNews";
-import { useTranslations  ,useLocale} from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Image from 'next/image';
+import Link from 'next/link';
 
 const News = () => {
-  const t = useTranslations("News");
+  const t = useTranslations();
+  const tNews = useTranslations("News");
   const currentLang = useLocale();
+
 
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true, margin: `80px` });
 
-
-  // const [news, setNews] = useState<NewsItem[]>([]);
-
-  // const loadNews = async () => {
-  //   const items = await getNews();
-  //   setNews(items);
-  // };
 
   return (
     <motion.section
@@ -29,7 +25,6 @@ const News = () => {
       animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
       transition={{ duration: 1.2 }}
       id="news"
-      // className="bg-body-tertiary"
     >
       <h2 id="news-title" className="text-center">
         {t("news_title")}
@@ -43,8 +38,8 @@ const News = () => {
             <Image
             height={564}
             width={1000}
-              src={t("image")}
-              alt={t("product0_title")}
+              src={tNews("image")}
+              alt={tNews("product0_title")}
               className="img-fluid"
               loading="lazy"
             />
@@ -52,30 +47,29 @@ const News = () => {
         </div>
         <div className="col-md-12 my-1 my-md-5 px-md-5 news-content">
           <div className="news-title">
-          <a
-  href={`${currentLang}/news/arabic-ai-shopping-assistant-launch`}
-  style={{
-    textDecoration: "none",
-    color: "var(--secondary-color)",
-  }}
->
-  {t("title")}
-</a>
-
+            <Link
+              href={`/${currentLang}/news/arabic-ai-shopping-assistant-launch`}
+              style={{
+                textDecoration: "none",
+                color: "var(--secondary-color)",
+              }}
+            >
+              {tNews("title")}
+            </Link>
           </div>
           <div className="news-desc lh-lg mx-2">
             {/* // dangerouslySetInnerHTML={{ __html: item.desc }} */}
-            {t("desc_part1")}{" "}
+            {tNews("desc_part1")}{" "}
             <a
               href="https://rakhys.com/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <strong className="text-primary">{t("brand")}</strong> {""}
+              <strong className="text-primary">{tNews("brand")}</strong> {""}
             </a>
-            {t("desc_part2")}
+            {tNews("desc_part2")}
           </div>
-          <div className="news-date lh-lg"> {t("news_date")}</div>
+          <div className="news-date lh-lg"> {tNews("news_date")}</div>
         </div>
       </div>
       {/* ))} */}

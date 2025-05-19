@@ -1,19 +1,21 @@
-import Head from "next/head";
+import { Metadata } from "next";
+import { PageProps } from "../../../../.next/types/app/[locale]/privacy/page";
 import News from "../../components/News/News";
-import { useTranslations } from "next-intl";
 
-// export const dynamic = 'force-static';
-// export const dynamic = 'force-dynamic';
+
+export const dynamic = 'force-static';
+
+export async function generateMetadata(
+  { params }: PageProps   
+): Promise<Metadata> {
+
+  const { locale } = await params;
+  return {
+    title: `Nexumind - ${locale === 'ar' ? 'الأخبار' : 'News'}`,
+  };
+}
+
 
 export default function NewsPage() {
-  const t = useTranslations();
-
-  return (
-    <>
-      <Head>
-        <title>{t("news_title")}</title>
-      </Head>
-      <News />
-    </>
-  );
+  return <News />;
 }

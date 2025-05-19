@@ -1,35 +1,32 @@
 "use client";
 
-import { useEffect, useState } from "react";
-// import "react-phone-input-2/lib/style.css"; // Import styles for react-phone-input-2
+import { useEffect, useState, useRef } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, SubmitHandler, Resolver } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
-// Import Arabic translations for country names
 import ar from "react-phone-input-2/lang/ar.json";
-import { useTranslations , useLocale } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Image from 'next/image';
-// Define the interface for your form inputs
+
 interface IFormInputs {
   name: string;
   jobtitle: string;
   company: string;
   email: string;
-  phone: string;
+  phone?: string;
   message: string;
   recaptchaToken?: string;
   lang?: string;
+  skipRecaptcha?: boolean;
 }
 
 const GetStarted = () => {
-  const  t  = useTranslations();
+  const t = useTranslations();
   const currentLang = useLocale();
-  
 
-  // Local state for form status
   const [formStatus, setFormStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
@@ -37,47 +34,47 @@ const GetStarted = () => {
   const validationSchema = Yup.object().shape({
     name: Yup.string()
       .required(t("form_name_required"))
-      .trim() // Automatically trims leading/trailing whitespace
+      .trim()
       .min(2, t("form_name_min"))
-      .matches(/^[\p{L}\s]+$/u, t("form_name_valid")), // Allows alphabetic characters and spaces only (no numbers/special chars)
+      .matches(/^[\p{L}\s]+$/u, t("form_name_valid")),
 
     jobtitle: Yup.string()
       .required(t("form_jobtitle_required"))
-      .trim() // Automatically trims leading/trailing whitespace
+      .trim()
       .min(2, t("form_jobtitle_min"))
-      .matches(/^[\p{L}\s]+$/u, t("form_jobtitle_valid")), // Allows alphabetic characters and spaces only (no numbers/special chars)
+      .matches(/^[\p{L}\s]+$/u, t("form_jobtitle_valid")),
 
-      company: Yup.string()
+    company: Yup.string()
       .required(t("form_company_required"))
-      .trim() // Automatically trims leading/trailing whitespace
+      .trim()
       .min(2, t("form_company_min"))
-      .matches(/^[\p{L}\s]+$/u, t("form_company_valid")), // Allows alphabetic characters and spaces only (no numbers/special chars)
+      .matches(/^[\p{L}\s]+$/u, t("form_company_valid")),
 
     email: Yup.string()
       .required(t("form_email_required"))
       .email(t("form_email_valid"))
-      .matches(/^\S*$/, t("form_email_no_whitespace")), // Disallow any whitespace
+      .matches(/^\S*$/, t("form_email_no_whitespace"))
+      .matches(
+        /^[a-zA-Z0-9._%+-]+@(?!gmail\.com|yahoo\.com|hotmail\.com|outlook\.com|aol\.com|icloud\.com|mail\.ru|protonmail\.com|zoho\.com|yandex\.com)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+        currentLang === "ar" 
+          ? "● يجب استخدام بريد إلكتروني خاص بشركتك."
+          : "● Business email required."
+      ),
 
     phone: Yup.string()
-      .required(t("form_phone_required"))
-      .matches(/^\S*$/, t("form_phone_no_whitespace")) // Disallow any whitespace
+      .matches(/^\S*$/, t("form_phone_no_whitespace"))
       .test("phone-length", t("form_phone_min"), (value) => {
-        if (!value) return false; // If the value is undefined or empty
-        const digits = value.replace(/\D/g, ""); // Remove non-digit characters
-        return digits.length >= 12; // Adjust based on your phone number requirements
+        if (!value) return true;
+        const digits = value.replace(/\D/g, "");
+        return digits.length <= 12;
       }),
 
     message: Yup.string()
       .required(t("form_message_required"))
-      .trim() // Automatically trims leading/trailing whitespace
+      .trim()
       .min(10, t("form_message_min")),
   });
 
-  // Best practice usage of trim() ensures:
-  // - Leading and trailing whitespace are automatically removed from "name" and "message" fields, improving data cleanliness without unnecessary validation errors.
-  // - Trim is more user-friendly compared to completely rejecting the input because of unintentional spaces.
-
-  // Initialize react-hook-form
   const {
     register,
     control,
@@ -86,51 +83,56 @@ const GetStarted = () => {
     reset,
     formState: { errors },
   } = useForm<IFormInputs>({
-    resolver: yupResolver(validationSchema),
-    mode: "onTouched", // Validate when fields are touched
-    reValidateMode: "onChange", // Re-validate fields as soon as they are changed
+    resolver: yupResolver(validationSchema) as Resolver<IFormInputs>,
+    mode: "onTouched",
+    reValidateMode: "onChange",
   });
-
-  // ReCaptcha hook
+  
   const { executeRecaptcha } = useGoogleReCaptcha();
+  const recaptchaInitialized = useRef(false);
 
-  // Modal states
   const [modalHeader, setModalHeader] = useState(t("modal_fail_header"));
   const [modalMessage, setModalMessage] = useState(t("modal_fail_message"));
   const [modalImgUrl, setModalImgUrl] = useState(t("modal_fail_img_url"));
 
-  // Form submission
-  const onSubmit = async (data: IFormInputs) => {
-    setFormStatus("loading");
-    // const myForm = document.getElementById("myForm") as HTMLElement;
-    // const modal = document.getElementById("modal-custom") as HTMLElement;
+  const skipRecaptcha = process.env.NEXT_PUBLIC_SKIP_RECAPTCHA === 'true';
 
+  const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
+    setFormStatus("loading");
     data.lang = currentLang;
 
-    // Check if recaptcha is available
-    if (!executeRecaptcha) {
-      // console.log("Execute recaptcha not yet available");
-      setFormStatus("idle");
+    if (!executeRecaptcha && !skipRecaptcha) {
+      console.error("reCAPTCHA not available");
+      setFormStatus("error");
+      setModalHeader(t("modal_fail_header"));
+      setModalMessage(t("modal_fail_message") + " - reCAPTCHA not available");
+      setModalImgUrl(t("modal_fail_img_url"));
       return;
     }
 
     try {
-      // Get reCAPTCHA token
-      const token = await executeRecaptcha("checkGetStartedForm");
-      data.recaptchaToken = token;
+      if (!skipRecaptcha && executeRecaptcha) {
+        const token = await executeRecaptcha("checkGetStartedForm");
+        if (!token) {
+          console.error("Failed to get reCAPTCHA token");
+          setFormStatus("error");
+          setModalHeader(t("modal_fail_header"));
+          setModalMessage(t("modal_fail_message") + " - Failed to get reCAPTCHA token");
+          setModalImgUrl(t("modal_fail_img_url"));
+          return;
+        }
+        data.recaptchaToken = token;
+      } else {
+        data.skipRecaptcha = true;
+      }
 
-      // Send form data to the server
       const response = await fetch("/api/send-email", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
 
       const result = await response.json();
-      // console.log("Success:", result);
-
       if (result.success) {
         setFormStatus("success");
         setModalHeader(t("modal_success_header"));
@@ -140,35 +142,34 @@ const GetStarted = () => {
       } else {
         setFormStatus("error");
         setModalHeader(t("modal_fail_header"));
-        setModalMessage(t("modal_fail_message"));
+        setModalMessage(t("modal_fail_message") + (result.message ? ": " + result.message : ""));
         setModalImgUrl(t("modal_fail_img_url"));
       }
-
-      setFormStatus("success");
-      // myForm.style.display = "none";
-      // modal.style.display = "block";
-    } catch (error) {
-      console.error("Error:", error);
+    } catch  {
       setFormStatus("error");
       setModalHeader(t("modal_fail_header"));
-      setModalMessage(t("modal_fail_message"));
+      setModalMessage(t("modal_fail_message") + " - Server error");
       setModalImgUrl(t("modal_fail_img_url"));
-      // myForm.style.display = "none";
-      // modal.style.display = "block";
     }
   };
 
-  // Register the phone field and execute recaptcha on load
   useEffect(() => {
-    if (executeRecaptcha) {
+    register("phone");
+    if (executeRecaptcha && !recaptchaInitialized.current) {
+      recaptchaInitialized.current = true;
       executeRecaptcha("homepage").then(() => {
-        // console.log("Recaptcha token:", token);
+        console.log("reCAPTCHA initialized");
+      }).catch(error => {
+        console.error("reCAPTCHA init failed:", error);
+        recaptchaInitialized.current = false;
       });
     }
-    register("phone");
   }, [executeRecaptcha, register]);
 
-  // Render the form
+  useEffect(() => {
+    recaptchaInitialized.current = false;
+  }, [currentLang]);
+
   return (
     <section id="getStarted" className="container-fluid">
       <div className="row">
@@ -178,6 +179,18 @@ const GetStarted = () => {
             <p dangerouslySetInnerHTML={{ __html: t("get_started_title") }}></p>
           </b>
           <div className="subtitle">{t("get_started_text")}</div>
+          {skipRecaptcha && (
+            <div style={{ 
+              backgroundColor: "#FFF3CD", 
+              color: "#856404", 
+              padding: "10px", 
+              borderRadius: "5px", 
+              marginTop: "10px",
+              textAlign: "center"
+            }}>
+              <strong>وضع الاختبار:</strong> تم تعطيل التحقق من الكابتشا مؤقتًا
+            </div>
+          )}
         </div>
         <div className="col-md-1"></div>
         <div className="col-md-6 col-sm-12">
@@ -204,12 +217,11 @@ const GetStarted = () => {
                 />
                 <div className="invalid-feedback">{errors.name?.message}</div>
 
-
                 <input
                   type="text"
                   id="jobtitle"
                   placeholder={t("form_jobtitle")}
-                  className={`input-field ${errors.name ? "is-invalid" : ""}`}
+                  className={`input-field ${errors.jobtitle ? "is-invalid" : ""}`}
                   {...register("jobtitle")}
                 />
                 <div className="invalid-feedback">{errors.jobtitle?.message}</div>
@@ -218,7 +230,7 @@ const GetStarted = () => {
                   type="text"
                   id="company"
                   placeholder={t("form_company")}
-                  className={`input-field ${errors.name ? "is-invalid" : ""}`}
+                  className={`input-field ${errors.company ? "is-invalid" : ""}`}
                   {...register("company")}
                 />
                 <div className="invalid-feedback">{errors.company?.message}</div>
@@ -238,32 +250,31 @@ const GetStarted = () => {
                   <Controller
                     name="phone"
                     control={control}
+                    defaultValue=""
                     render={({ field }) => (
-                      <>
-                        <PhoneInput
-                          {...field}
-                          country="sa"
-                          disableInitialCountryGuess={false}
-                          disableCountryCode={false} // Allow country code in the input (required for input to work)
-                          countryCodeEditable={false} // Prevent editing of the country code
-                          enableAreaCodes={true}
-                          excludeCountries={["il"]}
-                          localization={currentLang === "ar" ? ar : undefined}
-                          // inputStyle={{ paddingLeft: "58px" }} // Adjust alignment for phone number
-                          disableDropdown={false}
-                          onChange={(phone) => {
-                            field.onChange(phone);
-                            setValue("phone", phone); // Update form value
-                          }}
-                          disabled={formStatus === "loading"}
-                        />
-                      </>
+                      <PhoneInput
+                        {...field}
+                        country="sa"
+                        disableInitialCountryGuess={false}
+                        disableCountryCode={false}
+                        countryCodeEditable={false}
+                        enableAreaCodes={true}
+                        excludeCountries={["il"]}
+                        localization={currentLang === "ar" ? ar : undefined}
+                        disableDropdown={false}
+                        onChange={(phone) => {
+                          field.onChange(phone);
+                          setValue("phone", phone);
+                        }}
+                        disabled={formStatus === "loading"}
+                      />
                     )}
                   />
                 </div>
                 <div className="invalid-feedback" style={{ display: "block" }}>
                   {errors.phone && <span>{errors.phone.message}</span>}
                 </div>
+
                 <textarea
                   placeholder={t("form_message")}
                   id="message"
@@ -298,7 +309,14 @@ const GetStarted = () => {
               <div className="modal-dialog modal-custom" id="modal-custom">
                 <div className="modal-content">
                   <div className="modal-body">
-                    <Image loading="lazy" src={modalImgUrl} alt="Envelope" />
+                    <Image 
+                      loading="lazy" 
+                      src={modalImgUrl} 
+                      alt="Result envelope" 
+                      width={100}
+                      height={100}
+                      style={{ width: 'auto', height: 'auto' }}
+                    />
                     <h2
                       className={currentLang == "ar" ? "arabic-font" : ""}
                       dangerouslySetInnerHTML={{

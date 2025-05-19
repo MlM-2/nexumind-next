@@ -1,20 +1,22 @@
-"use client";
-import Head from "next/head";
+// "use client";
+import { PageProps } from "../../../../.next/types/app/[locale]/terms/page";
 import TermsAndConditions from "../../components/TermsAndConditions/TermsAndConditions";
-import { useTranslations } from "next-intl";
+import { Metadata } from "next";
 
 
-export const dynamic = "force-static";
+export const dynamic = 'force-static';
+
+export async function generateMetadata(
+  { params }: PageProps   
+): Promise<Metadata> {
+
+  const { locale } = await params;
+  return {
+    title: `Nexumind - ${locale === 'ar' ? 'الشروط والأحكام' : 'Terms'}`,
+  };
+}
 
 export default function TermsPage() {
-  const  t  = useTranslations();
 
-  return (
-    <>
-      <Head>
-        <title>{t("terms_and_conditions_title")}</title>
-      </Head>
-      <TermsAndConditions />
-    </>
-  );
+  return <TermsAndConditions />;
 }

@@ -43,14 +43,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const customerMailOptions = {
     from: process.env.FROM_EMAIL,
     to: businessEmail,
-    subject: 'Request a Demo for NexuCX',
+    subject: 'Request a Demo for NexuMind',
     html: emailHtmlContent,
   };
 
   const processorMailOptions = {
     from: process.env.FROM_EMAIL,
     to: process.env.PROCESSOR_EMAIL,
-    subject: 'New Request Received for NexuCX',
+    subject: 'New Request Received for NexuMind',
     html: processorEmailHtmlContent,
   };
 

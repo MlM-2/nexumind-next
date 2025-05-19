@@ -1,16 +1,13 @@
 import React from "react";
 import { useTranslations } from "next-intl";
 
-
 function PrivacyPolicy() {
-
   const t = useTranslations();
+
   
-
   return (
-    <div className="PrivacyPolicyContainer  container p-4">
+    <div className="PrivacyPolicyContainer container p-4">
       <section id="PrivacyPolicy">
-
         <h1>{t("privacy_policy_title")}</h1>
         <p>
           <strong>{t("last_updated")}:</strong> {t("last_updated_date")}
@@ -60,7 +57,6 @@ function PrivacyPolicy() {
         <h2>{t("privacy_2_title")}</h2>
         <p>{t("privacy_2_paragraph_1")}</p>
         <ul>
- 
            <li><strong>{t("privacy_2_list_item_1_bold")}</strong> {t("privacy_2_list_item_1_rest")}</li>
            <li><strong>{t("privacy_2_list_item_2_bold")}</strong> {t("privacy_2_list_item_2_rest")}</li>
            <li><strong>{t("privacy_2_list_item_3_bold")}</strong> {t("privacy_2_list_item_3_rest")}</li>
@@ -148,12 +144,10 @@ function PrivacyPolicy() {
           <strong>{t("company_name")}</strong>
           <br />
           {t("email_label")}{" "}
-
           <a href={t("email_link_href")}>
             {t("email_link_text")}
           </a>
         </p>
-
       </section>
     </div>
   );
