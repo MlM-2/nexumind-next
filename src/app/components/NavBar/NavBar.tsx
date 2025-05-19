@@ -186,7 +186,7 @@ function NavBar() {
           <a href={`/${currentLang}`} className="navbar-brand" aria-label="Home Page">
             <Image
               width={200}
-              height={200}
+              height={100}
               loading="lazy"
               className="logo-icon"
               src="/img/Logo.svg"
@@ -221,7 +221,7 @@ function NavBar() {
             >
               <Image
                 width={200}
-                height={200}
+                height={100}
                 loading="lazy"
                 className="logo-icon"
                 src="/img/Logo.svg"
