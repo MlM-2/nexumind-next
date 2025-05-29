@@ -86,6 +86,12 @@ function NavBar() {
   const handleLanguageChange = () => {
     const preservedSections = ['aboutUs', 'products', 'solutions','news','getStarted'];
 
+      const container = document.getElementById("recaptcha-badge-container");
+  if (container) {
+    container.remove();
+  }
+
+
     if (currentLang === 'ar' && pathname.includes('/news/arabic-')) {
       const slug = pathname.split('/news/arabic-')[1];
       const newPath = `/news/arabic-${slug}`;
@@ -283,8 +289,8 @@ function NavBar() {
                     className="nav-link bg-transparent border-0"
                   >
                     <Image
-                      width={24}
-                      height={24}
+                      width={30}
+                      height={30}
                       loading="lazy"
                       src={
                         currentLang === "en"

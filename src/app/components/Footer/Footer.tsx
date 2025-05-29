@@ -1,4 +1,3 @@
-
 "use client";
 
 import {
@@ -79,7 +78,7 @@ const Footer = () => {
   return (
     <footer
       id="footer"
-      className="footer p-5"
+      className="footer p-1"
       // style={{
       //   position: "fixed",
       //   bottom: 0,
@@ -90,7 +89,7 @@ const Footer = () => {
       // }}
     >
       <div className="footer-content">
-        <div className="row align-items-center line-one my-5">
+        <div className="row align-items-center line-one">
           <div
             className={
              currentLang == "en"
@@ -151,7 +150,7 @@ const Footer = () => {
               </div>
               <div>
                 <a
-                  href="https://youtube.com/@nexumind?si=4S8Z5t8XLMqw5Fzg"
+                  href="https://youtube.com/@nexumind"
                   className="mx-4 my-2 my-md-0"
                   aria-label="NexuMind on Youtube"
                   target="_blank"
@@ -177,7 +176,7 @@ const Footer = () => {
               </div>
               <div>
                 <a
-                  href="https://www.instagram.com/nexumindai?igsh=N202bXA2dDJibnk3"
+                  href="https://www.instagram.com/nexumindai"
                   className="mx-4 my-2 my-md-0"
                   aria-label="NexuMind on Instagram"
                   target="_blank"

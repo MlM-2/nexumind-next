@@ -55,9 +55,10 @@ const  t  = useTranslations();
       transition={{ duration: 1, delay: 0.5 }}
       className="display-1 fw-bold fs-0 fs-md-1 fs-lg-3"
     >
-     {t('landing_title_line1')}
+     {t('landing_title_line1')} {}
+     <span className="title-highlited">{t('landing_title_line2')}</span>
       <br />
-      <span className="title-highlited">{t('landing_title_line2')}</span>
+    
     </motion.h1>
         <motion.p
           initial={{ y: -30, opacity: 0 }}

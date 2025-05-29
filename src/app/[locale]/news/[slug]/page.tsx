@@ -11,14 +11,14 @@ export default function NewsDetailPage() {
   const locale = useLocale();
 
   useEffect(() => {
-    const readableTitle = slug
-      .split('-')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
+    // const readableTitle = slug
+      // .split('-')
+      // .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      // .join(' ');
     
     const title = locale === 'ar' 
-      ? `نكسومايند - الأخبار: ${readableTitle}`
-      : `Nexumind - News: ${readableTitle}`;
+      ? `Nexumind - الأخبار`
+      : `Nexumind - News`;
       
     document.title = title;
     

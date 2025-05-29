@@ -73,7 +73,7 @@
   "form_phone": "رقم الهاتف",
   "form_phone_required": "● رقم الهاتف مطلوب",
   "form_phone_no_whitespace": "● يجب أن يحتوي رقم الهاتف على أرقام فقط",
-  "form_phone_min": "● يجب أن يكون رقم الهاتف مكونًا من 9 أرقام على الأقل",
+  "form_phone_min": "● يجب أن يكون رقم الهاتف مكونًا من 12 أرقام على الأقل",
   "form_phone_invalid": "● رقم الهاتف غير صالح.",
   "form_message": "الرسالة",
   "form_message_required": "● الرسالة مطلوبة",

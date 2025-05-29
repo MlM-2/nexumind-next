@@ -64,7 +64,7 @@
   "form_phone": "Your Phone",
   "form_phone_required": "● Phone number is required",
   "form_phone_no_whitespace": "● No whitespace allowed in the phone number",
-  "form_phone_min": "● Phone number must be at least 9 digits long",
+  "form_phone_min": "● Phone number must be at least 12 digits long",
   "form_phone_invalid": "● Phone number is invalid",
   "form_message": "Your Message",
   "form_message_required": "● Message is required",

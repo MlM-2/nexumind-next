@@ -65,11 +65,12 @@ body {
   width: 100vw;
   display: flex;
   position: fixed;
+  padding: 0.5rem 0;
 }
 
 #nav .logo-icon {
   padding: 0.7rem;
-  height: 5rem;
+  height: 6rem;
 }
 
 #navbarNav > ul > li > a:before {
@@ -95,6 +96,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  padding: 0.8rem 0;
 }
 #navbarNav .nav-item > .nav-link:hover{
   color: var(--primary-color);

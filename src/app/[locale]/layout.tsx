@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.rtl.min.css";
 import { Tajawal } from 'next/font/google';
 import { routing } from '../../i18n/routing';
 
+
 const tajawal = Tajawal({
   subsets: ['arabic'],
   weight: ['400', '700'],
@@ -77,12 +78,10 @@ export default async function LocaleLayout({
         {/* Canonical URL */}
         <link rel="canonical" href={`https://www.nexumind.com/${locale}`} />
 
-        {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-
+        {/* Favicon
+  
+        <link rel="manifest" href="/site.webmanifest" /> */}
+        <link rel="icon" href="/img/favicon.ico" sizes="any" />  
         {/* Stylesheets */}
         <link
           rel="stylesheet"
@@ -227,13 +226,15 @@ export default async function LocaleLayout({
   }}
 />
       </head>
-      <body className={`${tajawal.variable} container-fluid content rounded-bottom-5`}>
-        <NextIntlClientProvider locale={locale} messages={messages}>
+      <body className={`${tajawal.variable} content rounded-bottom-5`} style={{marginLeft: "1px", marginRight: "1px" ,overflowX: "hidden"}}>
+      <NextIntlClientProvider locale={locale} messages={messages}>
           <NavBar />
           {children}
           <Footer />
-        </NextIntlClientProvider>
+          </NextIntlClientProvider>
+    
       </body>
+
     </html>
   );
 }

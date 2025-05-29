@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import {useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
 import { Controller, useForm, SubmitHandler, Resolver } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+
 import ar from "react-phone-input-2/lang/ar.json";
 import { useTranslations, useLocale } from "next-intl";
 import Image from 'next/image';
@@ -23,7 +23,9 @@ interface IFormInputs {
   skipRecaptcha?: boolean;
 }
 
+
 const GetStarted = () => {
+
   const t = useTranslations();
   const currentLang = useLocale();
 
@@ -66,7 +68,7 @@ const GetStarted = () => {
       .test("phone-length", t("form_phone_min"), (value) => {
         if (!value) return true;
         const digits = value.replace(/\D/g, "");
-        return digits.length <= 12;
+        return digits.length >= 12;
       }),
 
     message: Yup.string()
@@ -88,8 +90,7 @@ const GetStarted = () => {
     reValidateMode: "onChange",
   });
   
-  const { executeRecaptcha } = useGoogleReCaptcha();
-  const recaptchaInitialized = useRef(false);
+  // const { executeRecaptcha } = useGoogleReCaptcha();
 
   const [modalHeader, setModalHeader] = useState(t("modal_fail_header"));
   const [modalMessage, setModalMessage] = useState(t("modal_fail_message"));
@@ -101,30 +102,10 @@ const GetStarted = () => {
     setFormStatus("loading");
     data.lang = currentLang;
 
-    if (!executeRecaptcha && !skipRecaptcha) {
-      console.error("reCAPTCHA not available");
-      setFormStatus("error");
-      setModalHeader(t("modal_fail_header"));
-      setModalMessage(t("modal_fail_message") + " - reCAPTCHA not available");
-      setModalImgUrl(t("modal_fail_img_url"));
-      return;
-    }
+ 
 
     try {
-      if (!skipRecaptcha && executeRecaptcha) {
-        const token = await executeRecaptcha("checkGetStartedForm");
-        if (!token) {
-          console.error("Failed to get reCAPTCHA token");
-          setFormStatus("error");
-          setModalHeader(t("modal_fail_header"));
-          setModalMessage(t("modal_fail_message") + " - Failed to get reCAPTCHA token");
-          setModalImgUrl(t("modal_fail_img_url"));
-          return;
-        }
-        data.recaptchaToken = token;
-      } else {
-        data.skipRecaptcha = true;
-      }
+ 
 
       const response = await fetch("/api/send-email", {
         method: "POST",
@@ -153,22 +134,6 @@ const GetStarted = () => {
     }
   };
 
-  useEffect(() => {
-    register("phone");
-    if (executeRecaptcha && !recaptchaInitialized.current) {
-      recaptchaInitialized.current = true;
-      executeRecaptcha("homepage").then(() => {
-        console.log("reCAPTCHA initialized");
-      }).catch(error => {
-        console.error("reCAPTCHA init failed:", error);
-        recaptchaInitialized.current = false;
-      });
-    }
-  }, [executeRecaptcha, register]);
-
-  useEffect(() => {
-    recaptchaInitialized.current = false;
-  }, [currentLang]);
 
   return (
     <section id="getStarted" className="container-fluid">
@@ -266,6 +231,25 @@ const GetStarted = () => {
                           field.onChange(phone);
                           setValue("phone", phone);
                         }}
+                        inputProps={{
+                          maxLength: 17, // This allows for country code and formatting characters
+                          onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => {
+                            const input = e.target as HTMLInputElement;
+                            const currentDigits = input.value.replace(/\D/g, "");
+                            
+                            // Allow special keys like backspace, delete, arrows, etc.
+                            if (e.key === 'Backspace' || e.key === 'Delete' || 
+                                e.key === 'ArrowLeft' || e.key === 'ArrowRight' || 
+                                e.key === 'Tab' || e.ctrlKey || e.metaKey) {
+                              return;
+                            }
+                            
+                            // If it's a digit and adding it would exceed 13 digits, prevent input
+                            if (/^\d$/.test(e.key) && currentDigits.length >= 13) {
+                              e.preventDefault();
+                            }
+                          }
+                        }}
                         disabled={formStatus === "loading"}
                       />
                     )}
@@ -287,9 +271,11 @@ const GetStarted = () => {
                   {errors.message?.message}
                 </div>
 
+
                 <div
+               
+                  // className="g-recaptcha"  
                   id="recaptcha-badge-container"
-                  className="g-recaptcha"
                   style={{ marginBottom: "1rem" }}
                 ></div>
 
