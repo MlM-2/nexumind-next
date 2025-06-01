@@ -81,12 +81,13 @@ a {
   width: 100vw;
   display: flex;
   position: fixed;
-  padding: 0.5rem 0;
+  padding: 0.2rem 0;
+  height: 60px;
 }
 
 #nav .logo-icon {
-  padding: 0.7rem;
-  height: 6rem;
+  padding: 0.3rem;
+  height: 5rem;
 }
 
 #navbarNav > ul > li > a:before {
@@ -235,7 +236,7 @@ a {
   background-repeat: no-repeat, no-repeat;
   overflow: hidden;
   position: relative;
-  margin-top: 8vh;
+  margin-top: 70px;
 }
 
 #landingPage > .landing-page-img {
@@ -974,7 +975,7 @@ footer > .footer-content > .line-two {
   }
   #navbarNav > ul {
     position: relative;
-    bottom: -0.5rem;
+    bottom: -0.3rem;
     margin-left: auto;
   }
 
@@ -1126,7 +1127,7 @@ footer > .footer-content > .line-two {
   }
   #navbarNav > ul {
     position: relative;
-    bottom: -0.5rem;
+    bottom: -0.3rem;
     margin-left: auto;
   }
 
@@ -1288,7 +1289,7 @@ footer > .footer-content > .line-two {
   }
   #navbarNav > ul {
     position: relative;
-    bottom: -0.5rem;
+    bottom: -0.3rem;
     margin-left: auto;
   }
 

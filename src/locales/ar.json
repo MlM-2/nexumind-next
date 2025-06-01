@@ -5,8 +5,9 @@
     { "key": "products", "value": "products", "label": "منتجاتنا" },
     { "key": "news", "value": "news", "label": "الأخبار" }
   ],
-  "landing_title_line1": "إحداث ثورة مستقبلية",
-  "landing_title_line2": "بالذكاء الاصطناعي",
+  "landing_title_line1": "إحداث ثورة مستقبلية ",
+  "landing_title_line2": "",
+  "landing_title_highlight": "بالذكاء الاصطناعي",
   "lead": "أطلق العنان لإمكانات غير محدودة لأعمالك من خلال حلول الذكاء الاصطناعي الرائدة.",
   "get_started": "ابدأ الآن",
   "nexumind_tab": "عنّا",

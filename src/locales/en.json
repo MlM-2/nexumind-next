@@ -5,8 +5,9 @@
     { "key": "products", "value": "/products", "label": "Products" },
     { "key": "news", "value": "/news", "label": "News" }
   ],
-   "landing_title_line1": "Revolutionizing the Future with",
-  "landing_title_line2": "AI",
+   "landing_title_line1": "Revolutionizing",
+  "landing_title_line2": "the Future with",
+  "landing_title_highlight": "AI",
   "lead": "Unlocking unprecedented potential with cutting-edge artificial intelligence solutions for your business.",
   "get_started": "Get Started",
   "nexumind_tab": "NexuMind",

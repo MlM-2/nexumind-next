@@ -191,13 +191,13 @@ function NavBar() {
         <div className="container-fluid">
           <a href={`/${currentLang}`} className="navbar-brand" aria-label="Home Page">
             <Image
-              width={200}
-              height={100}
+                      fill
+                      style={{ objectFit: 'cover' }} 
               loading="lazy"
               className="logo-icon"
               src="/img/Logo.svg"
               alt="NexuMind Logo"
-              style={{ width: '100%', height: 'auto' }} 
+              // style={{ width: '100%', height: 'auto' }} 
             />
           </a>
           {/* Minimal placeholder content during initial render */}
@@ -227,8 +227,8 @@ function NavBar() {
               aria-label="Home Page"
             >
               <Image
-                width={200}
-                height={100}
+                width={220}
+                height={50}
                 loading="lazy"
                 className="logo-icon"
                 src="/img/Logo.svg"

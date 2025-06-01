@@ -55,9 +55,9 @@ const  t  = useTranslations();
       transition={{ duration: 1, delay: 0.5 }}
       className="display-1 fw-bold fs-0 fs-md-1 fs-lg-3"
     >
-     {t('landing_title_line1')} {}
-     <span className="title-highlited">{t('landing_title_line2')}</span>
-      <br />
+     {t('landing_title_line1')}
+     {currentLang === 'en' && <br />}
+     {t('landing_title_line2')} <span className="title-highlited">{t('landing_title_highlight')}</span>
     
     </motion.h1>
         <motion.p
