@@ -9,12 +9,6 @@ import { Tajawal } from 'next/font/google';
 import { routing } from '../../i18n/routing';
 
 
-const tajawal = Tajawal({
-  subsets: ['arabic'],
-  weight: ['400', '700'],
-  variable: '--font-tajawal',
-  display: 'swap',
-});
 
 export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -70,6 +64,10 @@ export default async function LocaleLayout({
         <meta name="twitter:site" content="@nexumind" />
         <meta name="twitter:creator" content="@nexumind" />
 
+        <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
+      rel="stylesheet"
+    />
         {/* hreflang for multilingual support */}
         <link rel="alternate" href="https://www.nexumind.com/en" hrefLang="en" />
         <link rel="alternate" href="https://www.nexumind.com/ar" hrefLang="ar" />
@@ -226,7 +224,7 @@ export default async function LocaleLayout({
   }}
 />
       </head>
-      <body className={`${tajawal.variable} content rounded-bottom-5`} style={{marginLeft: "1px", marginRight: "1px" ,overflowX: "hidden"}}>
+      <body className={`content rounded-bottom-5`} style={{marginLeft: "1px", marginRight: "1px" ,overflowX: "hidden"}}>
       <NextIntlClientProvider locale={locale} messages={messages}>
           <NavBar />
           {children}
