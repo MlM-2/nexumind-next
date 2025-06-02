@@ -42,23 +42,23 @@
   "get_started_title": "Ready to Transform <br/>Your Business?",
   "get_started_text": "Experience the future of AI with NexuMind. Whether you're looking to enhance your operations, make smarter decisions, or unlock new opportunities, our AI solutions are here to help.",
 
-"form_name": "Your Full Name",
+"form_name": "Your Full Name*",
 "form_name_required": "● Full Name is required",
 "form_name_min": "● Full Name must be at least 2 characters long",
 "form_name_valid": "● Full Name must contain letters only; no numbers or special characters are allowed",
 
-"form_jobtitle": "Your Job Title",
+"form_jobtitle": "Your Job Title*",
 "form_jobtitle_required": "● Job Title is required",
 "form_jobtitle_min": "● Job Title must be at least 2 characters long",
 "form_jobtitle_valid": "● Job Title must contain letters only; no numbers or special characters are allowed",
 
-"form_company": "Your Company Name",
+"form_company": "Your Company Name*",
 "form_company_required": "● Company Name is required",
 "form_company_min": "● Company Name must be at least 2 characters long",
 "form_company_valid": "● Company Name must contain letters only; no numbers or special characters are allowed",
 
 
-  "form_email": "Your Email",
+  "form_email": "Your Email*",
   "form_email_required": "● Email is required",
   "form_email_valid": "● Invalid email address",
   "form_email_no_whitespace": "● No whitespace allowed in the email",
@@ -67,7 +67,7 @@
   "form_phone_no_whitespace": "● No whitespace allowed in the phone number",
   "form_phone_min": "● Phone number must be at least 12 digits long",
   "form_phone_invalid": "● Phone number is invalid",
-  "form_message": "Your Message",
+  "form_message": "Your Message*",
   "form_message_required": "● Message is required",
   "form_message_min": "● Message must be at least 10 characters long",
   "form_submit": "Send",

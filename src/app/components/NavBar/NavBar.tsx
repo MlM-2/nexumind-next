@@ -191,8 +191,9 @@ function NavBar() {
         <div className="container-fluid">
           <a href={`/${currentLang}`} className="navbar-brand" aria-label="Home Page">
             <Image
-                      fill
-                      style={{ objectFit: 'cover' }} 
+                      
+                      height={269}
+                      width={56}
               loading="lazy"
               className="logo-icon"
               src="/img/Logo.svg"
@@ -227,8 +228,8 @@ function NavBar() {
               aria-label="Home Page"
             >
               <Image
-                width={220}
-                height={50}
+                width={269}
+                height={56}
                 loading="lazy"
                 className="logo-icon"
                 src="/img/Logo.svg"

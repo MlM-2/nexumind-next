@@ -173,14 +173,23 @@ const GetStarted = () => {
                 id="myForm"
                 onSubmit={handleSubmit(onSubmit)}
               >
+             
+             <label htmlFor="name" className="sr-only">
+             {t("form_name")}
+             </label>
                 <input
                   type="text"
                   id="name"
                   placeholder={t("form_name")}
                   className={`input-field ${errors.name ? "is-invalid" : ""}`}
+                  
                   {...register("name")}
                 />
                 <div className="invalid-feedback">{errors.name?.message}</div>
+
+                <label htmlFor="name" className="sr-only">
+             {t("form_jobtitle")}
+             </label>
 
                 <input
                   type="text"
@@ -191,6 +200,10 @@ const GetStarted = () => {
                 />
                 <div className="invalid-feedback">{errors.jobtitle?.message}</div>
 
+
+                <label htmlFor="company" className="sr-only">
+             {t("form_company")}
+             </label>
                 <input
                   type="text"
                   id="company"
@@ -200,6 +213,10 @@ const GetStarted = () => {
                 />
                 <div className="invalid-feedback">{errors.company?.message}</div>
 
+
+                <label htmlFor="email" className="sr-only">
+             {t("email")}
+             </label>
                 <input
                   type="email"
                   id="email"
@@ -210,6 +227,10 @@ const GetStarted = () => {
                 <div className="invalid-feedback" style={{ display: "block" }}>
                   {errors.email && <span>{errors.email.message}</span>}
                 </div>
+                
+                <label htmlFor="phone" className="sr-only">
+             {t("form_phone")}
+             </label>
 
                 <div className="phone-container">
                   <Controller
@@ -259,6 +280,10 @@ const GetStarted = () => {
                   {errors.phone && <span>{errors.phone.message}</span>}
                 </div>
 
+             
+                <label htmlFor="message" className="sr-only">
+             {t("form_message")}
+             </label>
                 <textarea
                   placeholder={t("form_message")}
                   id="message"
