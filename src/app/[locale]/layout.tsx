@@ -5,7 +5,6 @@ import NavBar from '../components/NavBar/NavBar';
 import Footer from '../components/Footer/Footer';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap.rtl.min.css";
-import { Tajawal } from 'next/font/google';
 import { routing } from '../../i18n/routing';
 
 
