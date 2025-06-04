@@ -191,9 +191,9 @@ function NavBar() {
         <div className="container-fluid">
           <a href={`/${currentLang}`} className="navbar-brand" aria-label="Home Page">
             <Image
-                      
-                      height={269}
-                      width={56}
+                        
+                        height={45}
+                        width={200}
               loading="lazy"
               className="logo-icon"
               src="/img/Logo.svg"
@@ -228,8 +228,9 @@ function NavBar() {
               aria-label="Home Page"
             >
               <Image
-                width={269}
-                height={56}
+             
+             height={45}
+             width={200}
                 loading="lazy"
                 className="logo-icon"
                 src="/img/Logo.svg"

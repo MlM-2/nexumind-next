@@ -6,7 +6,7 @@ function PrivacyPolicy() {
 
   
   return (
-    <div className="PrivacyPolicyContainer container p-4">
+    <div className="container p-4">
       <section id="PrivacyPolicy">
         <h1>{t("privacy_policy_title")}</h1>
         <p>

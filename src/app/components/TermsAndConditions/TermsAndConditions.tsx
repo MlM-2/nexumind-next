@@ -10,7 +10,7 @@ function TermsAndConditions() {
 
   return (
     
-    <div className="TermsAndConditionsContainer container p-8">
+    <div className="container p-4">
       <section id="TermsAndConditions">
 
         <h1>{t("terms_and_conditions_title")}</h1>
