@@ -88,8 +88,8 @@ const Footer = () => {
       //   height: "100vh",
       // }}
     >
-      <div className="footer-content">
-        <div className="row align-items-center line-one">
+      <div className="footer-content ">
+        <div className="row align-items-center line-one mb-5">
           <div
             className={
              currentLang == "en"
