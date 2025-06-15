@@ -63,10 +63,10 @@ export default async function LocaleLayout({
         <meta name="twitter:site" content="@nexumind" />
         <meta name="twitter:creator" content="@nexumind" />
 
-        <link
+       {/*     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
       rel="stylesheet"
-    />
+    />*/}
         {/* hreflang for multilingual support */}
         <link rel="alternate" href="https://www.nexumind.com/en" hrefLang="en" />
         <link rel="alternate" href="https://www.nexumind.com/ar" hrefLang="ar" />
