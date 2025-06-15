@@ -134,12 +134,12 @@ export async function POST(request: Request) {
     if (!skipRecaptcha) {
       if (!formData.recaptchaToken) {
         console.error('Missing reCAPTCHA token in form submission');
-        return NextResponse.json({ success: false, message: 'رمز التحقق مفقود. يرجى تحديث الصفحة والمحاولة مرة أخرى.' }, { status: 400 });
+        return NextResponse.json({ success: false, message: 'reCAPTCHA verification failed for submission' }, { status: 400 });
       }
       const isRecaptchaValid = await verifyRecaptcha(formData.recaptchaToken);
       if (!isRecaptchaValid) {
         console.error('reCAPTCHA verification failed for submission:', formData.email);
-        return NextResponse.json({ success: false, message: 'فشل التحقق من رمز الكابتشا. يرجى تحديث الصفحة والمحاولة مرة أخرى.' }, { status: 400 });
+        return NextResponse.json({ success: false, message: 'reCAPTCHA verification failed for submission' }, { status: 400 });
       }
     } else {
       console.log('تخطي التحقق من الكابتشا (وضع التطوير)');
@@ -186,7 +186,7 @@ export async function POST(request: Request) {
       };
       const processorMailOptions: MailOptions = {
         from: process.env.FROM_EMAIL || 'contact@nexumind.com',
-        to: "murad65@yahoo.com",
+        to: process.env.PROCESSOR_EMAIL || 'contact@nexumind.com',
         subject: 'New Request Received for Nexumind',
         html: processorEmailHtmlContent,
       };

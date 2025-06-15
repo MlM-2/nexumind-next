@@ -58,7 +58,7 @@ const GetStarted = () => {
       .email(t("form_email_valid"))
       .matches(/^\S*$/, t("form_email_no_whitespace"))
       .matches(
-        /^[a-zA-Z0-9._%+-]+@(?!gmail\.com|hotmail\.com|outlook\.com|aol\.com|icloud\.com|mail\.ru|protonmail\.com|zoho\.com|yandex\.com)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+        /^[a-zA-Z0-9._%+-]+@(?!gmail\.com|yahoo\.com|hotmail\.com|outlook\.com|aol\.com|icloud\.com|mail\.ru|protonmail\.com|zoho\.com|yandex\.com)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
         currentLang === "ar" 
           ? "● يجب استخدام بريد إلكتروني خاص بشركتك."
           : "● Business email required."

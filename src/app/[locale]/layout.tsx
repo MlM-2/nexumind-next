@@ -6,7 +6,21 @@ import Footer from '../components/Footer/Footer';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap.rtl.min.css";
 import { routing } from '../../i18n/routing';
+import { Roboto } from 'next/font/google';
+import { Tajawal } from 'next/font/google';
 
+
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['100', '300', '400', '500', '700', '900'],
+  variable: '--font-roboto',
+});
+
+const tajawal = Tajawal({
+  subsets: ['arabic'],
+  weight: ['200', '300', '400', '500', '700', '800', '900'],
+  variable: '--font-tajawal',
+});
 
 
 export async function generateStaticParams() {
@@ -223,7 +237,7 @@ export default async function LocaleLayout({
   }}
 />
       </head>
-      <body className={`content rounded-bottom-5`} style={{marginLeft: "1px", marginRight: "1px" ,overflowX: "hidden"}}>
+      <body className={`${roboto.variable} ${tajawal.variable} content rounded-bottom-5`} style={{marginLeft: "1px", marginRight: "1px" ,overflowX: "hidden"}}>
       <NextIntlClientProvider locale={locale} messages={messages}>
           <NavBar />
           {children}
