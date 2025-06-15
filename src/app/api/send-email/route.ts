@@ -47,7 +47,7 @@ function proReplacePlaceholders(template: string, data: {
 
   return template
     .replace(/{{email}}/g, data.businessEmail || '')
-    .replace(/{{phone}}/g, data.phone || '')
+    .replace(/{{phone}}/g, data.phone || 'No phone number')
     .replace(/{{fullName}}/g, data.fullName)
     .replace(/{{companyName}}/g, data.companyName)
     .replace(/{{jobTitle}}/g, data.jobTitle)
@@ -56,7 +56,7 @@ function proReplacePlaceholders(template: string, data: {
 
 // reCAPTCHA verification function
 async function verifyRecaptcha(token: string) {
-  // تعطيل الكابتشا للتطوير - يمكن تفعيله أو تعطيله بسهولة
+
   const skipRecaptcha = process.env.SKIP_RECAPTCHA === 'true';
   if (skipRecaptcha) {
     console.log('تخطي التحقق من الكابتشا (وضع التطوير)');
@@ -137,22 +137,6 @@ export async function POST(request: Request) {
     console.log('Received form submission for:', formData.email);
     
     const skipRecaptcha = process.env.SKIP_RECAPTCHA === 'true';
-    
-    // Verify reCAPTCHA token (unless skipped)
-    if (!skipRecaptcha) {
-      if (!formData.recaptchaToken) {
-        console.error('Missing reCAPTCHA token in form submission');
-        return NextResponse.json({ success: false, message: 'رمز التحقق مفقود. يرجى تحديث الصفحة والمحاولة مرة أخرى.' }, { status: 400 });
-      }
-      
-      const isRecaptchaValid = await verifyRecaptcha(formData.recaptchaToken);
-      if (!isRecaptchaValid) {
-        console.error('reCAPTCHA verification failed for submission:', formData.email);
-        return NextResponse.json({ success: false, message: 'فشل التحقق من رمز الكابتشا. يرجى تحديث الصفحة والمحاولة مرة أخرى.' }, { status: 400 });
-      }
-    } else {
-      console.log('تخطي التحقق من الكابتشا (وضع التطوير)');
-    }
 
     const language = formData.lang || 'en';
     
@@ -200,14 +184,14 @@ export async function POST(request: Request) {
       const customerMailOptions: MailOptions = {
         from: process.env.FROM_EMAIL || 'contact@nexumind.com',
         to: formData.email,
-        subject: language === 'ar' ? 'طلب عرض توضيحي لـ NexuCX' : 'Request a Demo for NexuCX',
+        subject: language === 'ar' ? 'طلب عرض توضيحي لـ Nexumind' : 'Request a Demo for Nexumind',
         html: emailHtmlContent,
       };
   
       const processorMailOptions: MailOptions = {
         from: process.env.FROM_EMAIL || 'contact@nexumind.com',
         to: process.env.PROCESSOR_EMAIL || 'contact@nexumind.com',
-        subject: 'New Request Received for NexuCX',
+        subject: 'New Request Received for Nexumind',
         html: processorEmailHtmlContent,
       };
   

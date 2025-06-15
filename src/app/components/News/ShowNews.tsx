@@ -28,7 +28,7 @@ export default function ShowNews({ slug }: ShowNewsProps) {
 
   return (
     <div className="ShowNewsContainer" lang={currentLocale}>
-      <div id="ShowNews" className="row justify-content-center">
+      <div id="ShowNews" className="row justify-content-center container">
         <h1>{tNews("title")}</h1>
         <div className="news-date">{tNews("news_date")}</div>
         <div className="d-flex justify-content-center news-img">

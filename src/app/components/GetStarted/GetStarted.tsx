@@ -215,7 +215,7 @@ const GetStarted = () => {
 
 
                 <label htmlFor="email" className="sr-only">
-             {t("email")}
+             {t("email_label")}
              </label>
                 <input
                   type="email"
