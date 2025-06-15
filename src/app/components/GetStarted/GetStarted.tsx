@@ -110,7 +110,7 @@ const GetStarted = () => {
       try {
         const token = await executeRecaptcha("get_started_form");
         data.recaptchaToken = token;
-      } catch (err) {
+      } catch  {
         setFormStatus("error");
         setModalHeader(t("modal_fail_header"));
         setModalMessage(t("modal_fail_message") + " - reCAPTCHA error");
