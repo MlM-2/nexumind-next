@@ -1,6 +1,7 @@
 "use client";
 
 import {useState } from "react";
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
 import { Controller, useForm, SubmitHandler, Resolver } from "react-hook-form";
@@ -57,7 +58,7 @@ const GetStarted = () => {
       .email(t("form_email_valid"))
       .matches(/^\S*$/, t("form_email_no_whitespace"))
       .matches(
-        /^[a-zA-Z0-9._%+-]+@(?!gmail\.com|yahoo\.com|hotmail\.com|outlook\.com|aol\.com|icloud\.com|mail\.ru|protonmail\.com|zoho\.com|yandex\.com)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+        /^[a-zA-Z0-9._%+-]+@(?!gmail\.com|hotmail\.com|outlook\.com|aol\.com|icloud\.com|mail\.ru|protonmail\.com|zoho\.com|yandex\.com)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
         currentLang === "ar" 
           ? "● يجب استخدام بريد إلكتروني خاص بشركتك."
           : "● Business email required."
@@ -98,15 +99,27 @@ const GetStarted = () => {
 
   const skipRecaptcha = process.env.NEXT_PUBLIC_SKIP_RECAPTCHA === 'true';
 
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
   const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
     setFormStatus("loading");
     data.lang = currentLang;
 
- 
+    // reCAPTCHA v3 integration
+    if (!skipRecaptcha && executeRecaptcha) {
+      try {
+        const token = await executeRecaptcha("get_started_form");
+        data.recaptchaToken = token;
+      } catch (err) {
+        setFormStatus("error");
+        setModalHeader(t("modal_fail_header"));
+        setModalMessage(t("modal_fail_message") + " - reCAPTCHA error");
+        setModalImgUrl(t("modal_fail_img_url"));
+        return;
+      }
+    }
 
     try {
- 
-
       const response = await fetch("/api/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
