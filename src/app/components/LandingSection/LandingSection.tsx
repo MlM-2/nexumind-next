@@ -103,8 +103,7 @@ const  t  = useTranslations();
             src="/img/landing.webp"
             alt="Revolutionizing the Future with AI"
             effect="blur" // Enables the blur effect while loading
-            width="100%" // Adjust based on your layout needs
-            height="100%"
+            style={{ width: '100%', height: '100%' }}
             visibleByDefault={true} // Ensures the image is visible by default
           />
         </motion.div>

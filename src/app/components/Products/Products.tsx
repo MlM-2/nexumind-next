@@ -29,7 +29,7 @@ const Products = () => {
               src={t("product0_img")}
               alt={t("product0_title")}
               className="img-fluid"
-              loading="lazy"
+             priority
             />
           </div>
         </div>
@@ -61,6 +61,7 @@ const Products = () => {
               alt={t("product1_title")}
               className="img-fluid"
               loading="lazy"
+              
             />
           </div>
         </div>
