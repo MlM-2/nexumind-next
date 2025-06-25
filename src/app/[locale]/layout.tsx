@@ -3,8 +3,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import NavBar from '../components/NavBar/NavBar';
 import Footer from '../components/Footer/Footer';
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/css/bootstrap.rtl.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.rtl.min.css";
 import { routing } from '../../i18n/routing';
 import { Roboto } from 'next/font/google';
 import { Tajawal } from 'next/font/google';
@@ -94,10 +94,32 @@ export default async function LocaleLayout({
         <link rel="manifest" href="/site.webmanifest" /> */}
         <link rel="icon" href="/img/favicon.ico" sizes="any" />  
         {/* Stylesheets */}
+
+        <link
+            rel="stylesheet"
+            href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css'
+            
+          />
+        <link
+            rel="stylesheet"
+            href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css'
+            
+          />
         <link
           rel="stylesheet"
           href={isArabic ? "/styles/style-ar.css" : "/styles/style-en.css"}
         />
+
+
+<link
+            rel="stylesheet"
+            href={
+              isArabic
+                ? 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css'
+                : 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css'
+            }
+          />
+
 
         {/* Schema.org */}
         <script
