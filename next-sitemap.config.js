@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://www.nexumind.com', 
+  siteUrl: 'https://www.test.nexumind.com', 
   generateRobotsTxt: true,
   changefreq: 'weekly',
   priority: 0.7,
@@ -16,11 +16,11 @@ module.exports = {
 
   alternateRefs: [
     {
-      href: 'https://nexumind.com/ar',
+      href: 'https://test.nexumind.com/ar',
       hreflang: 'ar',
     },
     {
-      href: 'https://www.nexumind.com/en',
+      href: 'https://www.test.nexumind.com/en',
       hreflang: 'en',
     },
   ],
