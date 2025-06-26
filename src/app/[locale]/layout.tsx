@@ -10,6 +10,8 @@ import Footer from '../components/Footer/Footer';
 import { routing } from '../../i18n/routing';
 import { Roboto } from 'next/font/google';
 import { Tajawal } from 'next/font/google';
+import BootstrapLoader from '../components/BootstrapLoader/BootstrapLoader';
+import { Metadata } from 'next';
 
 
 const roboto = Roboto({
@@ -27,6 +29,58 @@ const tajawal = Tajawal({
   display: 'swap',
   preload: true,
 });
+
+
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  const isArabic = locale === 'ar';
+
+  const siteTitle = isArabic ? "NexuMind - حلول الذكاء الاصطناعي" : "NexuMind - AI Solutions";
+  const siteDescription = isArabic
+    ? "فتح آفاق جديدة مع حلول الذكاء الاصطناعي المتطورة لعملك."
+    : "Unlocking unprecedented potential with cutting-edge artificial intelligence solutions for your business.";
+
+  return {
+    title: siteTitle,
+    description: siteDescription,
+    keywords: isArabic ? ["ذكاء اصطناعي", "حلول تقنية", "برمجة"] : ["AI", "artificial intelligence", "tech solutions"],
+    metadataBase: new URL('https://www.nexumind.com'),
+    alternates: {
+      canonical: `/${locale}`,
+      languages: {
+        'en': '/en',
+        'ar': '/ar',
+        'x-default': '/',
+      },
+    },
+    openGraph: {
+      title: siteTitle,
+      description: siteDescription,
+      url: `/${locale}`,
+      siteName: 'NexuMind',
+      images: [
+        {
+          url: '/img/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: siteTitle,
+        },
+      ],
+      locale: isArabic ? 'ar_SA' : 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: siteTitle,
+      description: siteDescription,
+      site: '@nexumind',
+      creator: '@nexumind',
+      images: ['/img/og-image.png'],
+    },
+    icons: {
+      icon: '/img/favicon.ico',
+    },
+  };
+}
 
 
 export async function generateStaticParams() {
@@ -57,7 +111,6 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} dir={isArabic ? 'rtl' : 'ltr'}>
       <head>
-        {/* Basic Meta Tags */}
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content={siteDescription} />
@@ -101,32 +154,17 @@ export default async function LocaleLayout({
         <link rel="icon" href="/img/favicon.ico" sizes="any" />  
         
         {/* Critical CSS - Load Bootstrap CSS based on language direction */}
-        <>
-  <link
-    rel="preload"
-    as="style"
-    href={
-      isArabic
-        ? 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css'
-        : 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css'
-    }
-    onLoad={(e) => {
-      const link = e.currentTarget as HTMLLinkElement;
-      link.rel = 'stylesheet';
-    }}
-  />
-  <noscript>
-    <link
-      rel="stylesheet"
-      href={
-        isArabic
-          ? 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css'
-          : 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css'
-      }
-    />
-  </noscript>
-</>
-
+        <BootstrapLoader isArabic={isArabic} />
+        <noscript>
+          <link
+            rel="stylesheet"
+            href={
+              isArabic
+                ? 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css'
+                : 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css'
+            }
+          />
+        </noscript>
         
         {/* Custom CSS - must load before performance optimizations */}
         <link
@@ -134,11 +172,7 @@ export default async function LocaleLayout({
           href={isArabic ? "/styles/style-ar.css" : "/styles/style-en.css"}
         />
         
-        {/* Performance optimizations CSS - load after custom styles */}
-        <link
-          rel="stylesheet"
-          href="/styles/performance-optimizations.css"
-        />
+
 
         {/* Schema.org */}
         <script
@@ -149,9 +183,9 @@ export default async function LocaleLayout({
       "@type": ["WebSite", "Organization"],
       "@id": `https://www.nexumind.com/#${isArabic ? 'ar' : 'en'}`,
       "url": `https://www.nexumind.com/${locale}`,
-      "name": siteTitle,
+      "name": "NexuMind - AI Solutions",
       "alternateName": "NexuMind",
-      "description": siteDescription,
+      "description": "Unlocking unprecedented potential with cutting-edge artificial intelligence solutions for your business.",
       "inLanguage": locale,
       "logo": "https://www.nexumind.com/img/logo.png",
       "sameAs": [

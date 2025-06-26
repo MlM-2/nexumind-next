@@ -19,7 +19,7 @@ const LandingSection = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShouldAnimate(true);
-    }, 1200); 
+    }, 3000); 
     return () => clearTimeout(timer);
   }, []);
 
