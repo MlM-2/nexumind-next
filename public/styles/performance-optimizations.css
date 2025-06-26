@@ -1,0 +1,149 @@
+/* Performance Optimization CSS */
+
+/* Critical CSS for above-the-fold content */
+.hero-section {
+  min-height: 100vh;
+  contain: layout style paint;
+}
+
+/* Font loading optimization - Use system fonts as fallback to avoid 404 errors */
+
+/* Prevent layout shift */
+.img-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-container::before {
+  content: '';
+  display: block;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+}
+
+.img-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Optimize animations for better performance */
+.animate-fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: opacity, transform;
+}
+
+.animate-fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduce repaints and reflows */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize third-party content containers */
+.recaptcha-container {
+  min-height: 78px;
+  contain: layout;
+}
+
+.phone-input-container {
+  min-height: 56px;
+  contain: layout;
+}
+
+/* Critical path CSS */
+.above-fold {
+  contain: layout style paint;
+}
+
+/* Lazy loading placeholders */
+.lazy-placeholder {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Optimize Bootstrap overrides */
+.btn {
+  contain: layout style;
+}
+
+.card {
+  contain: layout style;
+}
+
+.navbar {
+  contain: layout style;
+}
+
+/* Text rendering optimization */
+body {
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reduce paint complexity */
+.complex-bg {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Optimize scrolling performance */
+.scroll-container {
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+}
+
+/* Critical viewport styles */
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 100vh;
+    min-height: 100svh; /* Safari mobile fix */
+  }
+}
+
+/* Preload critical images */
+.landing-image {
+  content-visibility: auto;
+  contain-intrinsic-size: 1200px 600px;
+}
+
+/* Optimize form rendering */
+.form-group {
+  contain: layout style;
+}
+
+.form-control {
+  contain: layout;
+}
+
+/* Reduce composite layer creation */
+.no-composite {
+  transform: none !important;
+  will-change: auto !important;
+}
+
+/* Optimize icon rendering */
+.icon {
+  contain: layout style paint;
+  display: inline-block;
+} 

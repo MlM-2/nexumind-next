@@ -15,9 +15,9 @@ export default function ShowNews({ slug }: ShowNewsProps) {
   const router = useRouter();
 
   useEffect(() => {
-    // التحقق من وجود slug وأنه صحيح
+    // Check if slug exists and is valid
     if (!slug || slug !== 'arabic-ai-shopping-assistant-launch') {
-      // إعادة التوجيه إلى صفحة الأخبار الرئيسية إذا كان slug غير صحيح
+      // Redirect to main news page if slug is invalid
       router.push(`/${currentLocale}/news`);
     }
   }, [slug, router, currentLocale]);

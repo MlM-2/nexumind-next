@@ -1,8 +1,10 @@
+/* eslint-disable @next/next/no-css-tags */
 // src/app/[locale]/layout.tsx
 import { NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import NavBar from '../components/NavBar/NavBar';
 import Footer from '../components/Footer/Footer';
+// import CSSLoader from '../components/CSSLoader'; // Removed as it causes CSS loading issues
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "bootstrap/dist/css/bootstrap.rtl.min.css";
 import { routing } from '../../i18n/routing';
@@ -14,12 +16,16 @@ const roboto = Roboto({
   subsets: ['latin'],
   weight: ['100', '300', '400', '500', '700', '900'],
   variable: '--font-roboto',
+  display: 'swap',
+  preload: true,
 });
 
 const tajawal = Tajawal({
   subsets: ['arabic'],
   weight: ['200', '300', '400', '500', '700', '800', '900'],
   variable: '--font-tajawal',
+  display: 'swap',
+  preload: true,
 });
 
 
@@ -77,10 +83,12 @@ export default async function LocaleLayout({
         <meta name="twitter:site" content="@nexumind" />
         <meta name="twitter:creator" content="@nexumind" />
 
-       {/*     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
-      rel="stylesheet"
-    />*/}
+        {/* DNS Prefetch for external resources */}
+        <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+        <link rel="dns-prefetch" href="//www.gstatic.com" />
+        <link rel="dns-prefetch" href="//www.google.com" />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+
         {/* hreflang for multilingual support */}
         <link rel="alternate" href="https://www.nexumind.com/en" hrefLang="en" />
         <link rel="alternate" href="https://www.nexumind.com/ar" hrefLang="ar" />
@@ -89,37 +97,30 @@ export default async function LocaleLayout({
         {/* Canonical URL */}
         <link rel="canonical" href={`https://www.nexumind.com/${locale}`} />
 
-        {/* Favicon
-  
-        <link rel="manifest" href="/site.webmanifest" /> */}
+        {/* Favicon */}
         <link rel="icon" href="/img/favicon.ico" sizes="any" />  
-        {/* Stylesheets */}
-
+        
+        {/* Critical CSS - Load Bootstrap CSS based on language direction */}
         <link
-            rel="stylesheet"
-            href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css'
-            
-          />
-        <link
-            rel="stylesheet"
-            href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css'
-            
-          />
+          rel="stylesheet"
+          href={
+            isArabic
+              ? 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css'
+              : 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css'
+          }
+        />
+        
+        {/* Custom CSS - must load before performance optimizations */}
         <link
           rel="stylesheet"
           href={isArabic ? "/styles/style-ar.css" : "/styles/style-en.css"}
         />
-
-
-<link
-            rel="stylesheet"
-            href={
-              isArabic
-                ? 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css'
-                : 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css'
-            }
-          />
-
+        
+        {/* Performance optimizations CSS - load after custom styles */}
+        <link
+          rel="stylesheet"
+          href="/styles/performance-optimizations.css"
+        />
 
         {/* Schema.org */}
         <script

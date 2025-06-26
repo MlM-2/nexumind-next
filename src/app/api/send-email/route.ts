@@ -129,7 +129,7 @@ export async function POST(request: Request) {
     const formData: FormData = await request.json();
     console.log('Received form submission for:', formData.email);
 
-    // تحقق من reCAPTCHA
+    // Verify reCAPTCHA
     const skipRecaptcha = process.env.SKIP_RECAPTCHA === 'true';
     if (!skipRecaptcha) {
       if (!formData.recaptchaToken) {

@@ -1,9 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import "../../styles/gototop.css";
-import Image from "next/image";
+// import Image from "next/image"; // Temporarily removed to fix hydration issues
 import { LazyMotion, domAnimation, m, AnimatePresence } from "framer-motion";
 import { useRouter, usePathname } from "../../../i18n/navigation";
 import { useTranslations, useLocale } from "next-intl";
@@ -190,15 +191,14 @@ function NavBar() {
       <nav id="nav" className="navbar navbar-expand-lg bg-body-tertiary sticky-top border-bottom" style={{ opacity: 0 }}>
         <div className="container-fluid">
           <a href={`/${currentLang}`} className="navbar-brand" aria-label="Home Page">
-            <Image
-                        
-                        height={45}
-                        width={200}
+            <img
+              height={45}
+              width={200}
               loading="lazy"
               className="logo-icon"
               src="/img/Logo.svg"
               alt="NexuMind Logo"
-              // style={{ width: '100%', height: 'auto' }} 
+              style={{ width: 'auto', height: '45px' }}
             />
           </a>
           {/* Minimal placeholder content during initial render */}
@@ -227,14 +227,14 @@ function NavBar() {
               className="navbar-brand" 
               aria-label="Home Page"
             >
-              <Image
-             
-             height={45}
-             width={200}
+              <img
+                height={45}
+                width={200}
                 loading="lazy"
                 className="logo-icon"
                 src="/img/Logo.svg"
                 alt="NexuMind Logo"
+                style={{ width: 'auto', height: '45px' }}
               />
             </a>
             <button
@@ -290,7 +290,7 @@ function NavBar() {
                     type="button"
                     className="nav-link bg-transparent border-0"
                   >
-                    <Image
+                    <img
                       width={30}
                       height={30}
                       loading="lazy"
@@ -301,6 +301,7 @@ function NavBar() {
                       }
                       alt="Language Icon"
                       className="d-md-block d-none"
+                      style={{ width: '30px', height: '30px' }}
                     />
                     <span className="arabic-font lang-text px-3">
                       {currentLang === "en" ? " العربية" : " English"}

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import {
@@ -10,7 +11,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslations , useLocale } from "next-intl";
 import { useEffect } from "react";
-import Image from 'next/image';
+// import Image from 'next/image'; // Temporarily removed to fix hydration issues
 
 interface Link {
   text: string;
@@ -118,13 +119,14 @@ const Footer = () => {
                 : "col-12 col-md-2 text-center"
             }
           >
-            <Image
-                  width={200}
-                  height={200}
+            <img
+              width={200}
+              height={200}
               loading="lazy"
               className="logo-icon img-fluid"
               src="/img/Logo.svg"
               alt="NexuMind Logo"
+              style={{ width: 'auto', height: 'auto', maxHeight: '60px' }}
             />
           </div>
           <div

@@ -7,9 +7,7 @@ const intlMiddleware = createMiddleware(routing);
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  console.log('Request path:', pathname);
 
-  // الشرط: إذا لم يبدأ المسار بـ /ar أو /en و ليس ملف (امتداد) و ليس api أو _next
   if (
     !pathname.startsWith('/ar') &&
     !pathname.startsWith('/en') &&
@@ -19,11 +17,36 @@ export default function middleware(request: NextRequest) {
   ) {
     const url = request.nextUrl.clone();
     url.pathname = `/en${pathname}`;
-    console.log('Redirecting to:', url.pathname);
     return NextResponse.redirect(url);
   }
 
-  return intlMiddleware(request);
+  const response = intlMiddleware(request);
+  
+  // Add performance and security headers
+  response.headers.set('X-Frame-Options', 'DENY');
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  response.headers.set('X-XSS-Protection', '1; mode=block');
+  response.headers.set('X-DNS-Prefetch-Control', 'on');
+  
+  // Cache headers for static assets
+  if (pathname.startsWith('/img/') || 
+      pathname.startsWith('/styles/') ||
+      pathname.endsWith('.ico') ||
+      pathname.endsWith('.svg') ||
+      pathname.endsWith('.png') ||
+      pathname.endsWith('.jpg') ||
+      pathname.endsWith('.jpeg') ||
+      pathname.endsWith('.webp')) {
+    response.headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+  }
+  
+  // API route caching
+  if (pathname.startsWith('/api/')) {
+    response.headers.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=86400');
+  }
+
+  return response;
 }
 
 export const config = {
