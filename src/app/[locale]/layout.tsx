@@ -101,14 +101,32 @@ export default async function LocaleLayout({
         <link rel="icon" href="/img/favicon.ico" sizes="any" />  
         
         {/* Critical CSS - Load Bootstrap CSS based on language direction */}
-        <link
-          rel="stylesheet"
-          href={
-            isArabic
-              ? 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css'
-              : 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css'
-          }
-        />
+        <>
+  <link
+    rel="preload"
+    as="style"
+    href={
+      isArabic
+        ? 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css'
+        : 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css'
+    }
+    onLoad={(e) => {
+      const link = e.currentTarget as HTMLLinkElement;
+      link.rel = 'stylesheet';
+    }}
+  />
+  <noscript>
+    <link
+      rel="stylesheet"
+      href={
+        isArabic
+          ? 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css'
+          : 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css'
+      }
+    />
+  </noscript>
+</>
+
         
         {/* Custom CSS - must load before performance optimizations */}
         <link
