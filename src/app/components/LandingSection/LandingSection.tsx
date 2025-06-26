@@ -19,7 +19,7 @@ const LandingSection = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShouldAnimate(true);
-    }, 3000); 
+    }, 10); 
     return () => clearTimeout(timer);
   }, []);
 
@@ -91,14 +91,20 @@ const LandingSection = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           style={{ display: "inline-block" }}
         >
-          <LazyLoadImage
-            placeholderSrc="/img/landing-sm.webp"
-            src="/img/landing.webp"
-            alt="Revolutionizing the Future with AI"
-            effect="blur"
-            style={{ width: '100%', height: '100%' }}
-            visibleByDefault={true}
-          />
+          <picture>
+  <source
+    media="(max-width: 768px)"
+    srcSet="/img/landing-sm.webp"
+  />
+  <LazyLoadImage
+    src="/img/landing.webp"
+    alt="Revolutionizing the Future with AI"
+    effect="blur"
+    placeholderSrc="/img/landing-sm.webp"
+    style={{ width: '100%', height: 'auto' }}
+  />
+</picture>
+
         </motion.div>
       </div>
     </motion.section>
