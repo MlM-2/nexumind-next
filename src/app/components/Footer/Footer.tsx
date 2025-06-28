@@ -94,8 +94,8 @@ const Footer = () => {
           <div
             className={
              currentLang == "en"
-                ? "col-12 col-md text-center text-md-end"
-                : "col-12 col-md text-center text-md-start"
+                ? "col-12 col-md text-center text-md-start"
+                : "col-12 col-md text-center text-md-end"
             }
           >
             <a
@@ -132,8 +132,8 @@ const Footer = () => {
           <div
             className={
              currentLang == "en"
-                ? "col-12 col-md text-center text-md-start text-white"
-                : "col-12 col-md text-center text-md-end text-white"
+                ? "col-12 col-md text-center text-md-end text-white"
+                : "col-12 col-md text-center text-md-start text-white"
             }
           >
             <div className="social-icons-container flex-md-row">
