@@ -238,6 +238,11 @@ function NavBar() {
               />
             </a>
             <button
+              style={{
+                border: "none",
+                boxShadow: "none",
+                outline: "none",
+              }}
               className={`navbar-toggler d-flex d-lg-none flex-column justify-content-around ${
                 isOpen ? "" : "collapsed"
               }`}
