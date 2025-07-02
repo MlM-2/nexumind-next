@@ -9,8 +9,8 @@ interface BootstrapLoaderProps {
 const BootstrapLoader = ({ isArabic }: BootstrapLoaderProps) => {
   useEffect(() => {
     const bootstrapHref = isArabic
-      ? 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css'
-      : 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css';
+      ? 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap-grid.rtl.min.css'
+      : 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap-grid.min.css';
 
     // Prevent re-adding the link if it already exists
     if (document.querySelector(`link[href="${bootstrapHref}"]`)) {
@@ -32,8 +32,8 @@ const BootstrapLoader = ({ isArabic }: BootstrapLoaderProps) => {
 
     // Preload the other stylesheet for faster language switching
     const otherBootstrapHref = isArabic
-      ? 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css'
-      : 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css';
+      ? 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap-grid.min.css'
+      : 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap-grid.rtl.min.css';
     
     if (!document.querySelector(`link[href="${otherBootstrapHref}"]`)) {
       const preloadLink = document.createElement('link');
