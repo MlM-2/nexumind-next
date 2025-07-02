@@ -8,45 +8,62 @@ interface BootstrapLoaderProps {
 
 const BootstrapLoader = ({ isArabic }: BootstrapLoaderProps) => {
   useEffect(() => {
+    // Bootstrap CSS URLs
     const bootstrapHref = isArabic
-      ? 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap-grid.rtl.min.css'
-      : 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap-grid.min.css';
+      ? 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css'
+      : 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css';
 
-    // Prevent re-adding the link if it already exists
-    if (document.querySelector(`link[href="${bootstrapHref}"]`)) {
-      return;
-    }
-
-    // Create the primary link as a preloaded stylesheet
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'style';
-    link.href = bootstrapHref;
-    
-    // When it loads, change its rel to 'stylesheet' to apply the styles non-blockingly
-    link.onload = () => {
-      link.rel = 'stylesheet';
-    };
-
-    document.head.appendChild(link);
-
-    // Preload the other stylesheet for faster language switching
     const otherBootstrapHref = isArabic
-      ? 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap-grid.min.css'
-      : 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap-grid.rtl.min.css';
-    
-    if (!document.querySelector(`link[href="${otherBootstrapHref}"]`)) {
-      const preloadLink = document.createElement('link');
-      preloadLink.rel = 'preload';
-      preloadLink.as = 'style';
-      preloadLink.href = otherBootstrapHref;
-      document.head.appendChild(preloadLink);
+      ? 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css'
+      : 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css';
+
+    // Your custom styles URLs
+    const customStyleHref = isArabic
+      ? '/styles/style-ar.css'
+      : '/styles/style-en.css';
+
+    const otherCustomStyleHref = isArabic
+      ? '/styles/style-en.css'
+      : '/styles/style-ar.css';
+
+    // Helper function to add preload + stylesheet link
+    function addStylesheet(href: string) {
+      if (document.querySelector(`link[href="${href}"]`)) return;
+
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'style';
+      link.href = href;
+      link.onload = () => {
+        link.rel = 'stylesheet';
+      };
+      document.head.appendChild(link);
     }
 
-    // No cleanup function is needed as we want the styles to persist across page navigations.
+    // Helper function to preload only (no onload switch)
+    function preloadStylesheet(href: string) {
+      if (document.querySelector(`link[href="${href}"]`)) return;
+
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'style';
+      link.href = href;
+      document.head.appendChild(link);
+    }
+
+    // Add bootstrap main stylesheet
+    addStylesheet(bootstrapHref);
+    // Preload the other bootstrap for faster switching
+    preloadStylesheet(otherBootstrapHref);
+
+    // Add your custom styles main stylesheet
+    addStylesheet(customStyleHref);
+    // Preload other custom style for faster switching
+    preloadStylesheet(otherCustomStyleHref);
+
   }, [isArabic]);
 
-  return null; // This component doesn't render anything itself
+  return null;
 };
 
-export default BootstrapLoader; 
+export default BootstrapLoader;
