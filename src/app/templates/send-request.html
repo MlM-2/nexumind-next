@@ -82,20 +82,129 @@
             font-size: 14px;
             color: #999;
         }
+
+        /* Mobile Responsive Styles */
+        @media only screen and (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 15px;
+                margin: 10px auto;
+            }
+
+            .img-container {
+                max-width: 100%;
+                padding: 10px 0;
+                margin-bottom: 10px;
+            }
+
+            .img-logo {
+                width: 200px;
+                height: 48px;
+            }
+
+            .header {
+                padding: 12px 0;
+                margin-bottom: 15px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            .content h2 {
+                font-size: 18px;
+            }
+
+            .content p {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+
+            .footer {
+                padding: 12px 0;
+                margin-top: 15px;
+            }
+
+            .footer p {
+                font-size: 12px;
+            }
+
+            /* Table responsive adjustments */
+            table[width="600"] {
+                width: 100% !important;
+            }
+
+            td[width="600"] {
+                width: 100% !important;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+
+            .container {
+                padding: 10px;
+                margin: 5px auto;
+            }
+
+            .img-logo {
+                width: 180px;
+                height: 43px;
+            }
+
+            .header {
+                padding: 10px 0;
+            }
+
+            .header h1 {
+                font-size: 18px;
+            }
+
+            .content {
+                padding: 12px;
+            }
+
+            .content h2 {
+                font-size: 16px;
+            }
+
+            .content p {
+                font-size: 13px;
+                line-height: 1.4;
+            }
+
+            .footer {
+                padding: 10px 0;
+            }
+
+            .footer p {
+                font-size: 11px;
+            }
+        }
     </style>
 </head>
 <body bgcolor="#f7f7f7">
     <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f7f7f7">
         <tr>
             <td align="center" style="padding: 20px 0;">
-                <table width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#f7f7f7" class="img-container">
+                <table width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#f7f7f7" class="img-container" style="max-width: 100%;">
                     <tr>
                         <td align="center" style="background-color: #f7f7f7; padding: 15px;">
-                            <img class="img-logo" src="https://nexumind.com/img/Logo.svg" alt="NexuMind Logo" width="250" height="60" style="display: block;">
+                            <img class="img-logo" src="https://nexumind.com/img/Logo.svg" alt="NexuMind Logo" width="250" height="60" style="display: block; max-width: 100%; height: auto;">
                         </td>
                     </tr>
                 </table>
-                <table width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff" class="container" style="border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                <table width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff" class="container" style="border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); max-width: 100%;">
                     <tr>
                         <td>
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -119,10 +228,10 @@
                         </td>
                     </tr>
                 </table>
-                <table width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#f7f7f7" class="footer" style="padding: 15px 0; margin-top: 10px; border-radius: 0 0 8px 8px;">
+                <table width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#f7f7f7" class="footer" style="padding: 15px 0; margin-top: 10px; border-radius: 0 0 8px 8px; max-width: 100%;">
                     <tr>
                         <td align="center">
-                            <p style="color: #999; font-size: 14px; margin: 0;">&copy; 2025 NexuMind. All rights reserved.</p>
+                            <p style="color: #999; font-size: 14px; margin: 0;">&copy; {{year}} NexuMind. All rights reserved.</p>
                         </td>
                     </tr>
                 </table>

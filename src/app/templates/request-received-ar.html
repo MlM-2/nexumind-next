@@ -3,6 +3,7 @@
 
 <head>
     <title>لقد استلمنا طلبك بنجاح في NexuMind</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             font-family: Helvetica, Arial, sans-serif;
@@ -96,6 +97,94 @@
         .content strong {
             color: #333;
         }
+
+        /* Mobile Responsive Styles */
+        @media only screen and (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 15px;
+                margin: 0;
+            }
+
+            .img-container {
+                max-width: 100%;
+                padding: 10px 0;
+            }
+
+            .img-logo {
+                width: 200px;
+                height: 48px;
+            }
+
+            .header {
+                padding: 20px 12px;
+            }
+
+            h1 {
+                font-size: 18px;
+            }
+
+            .content {
+                padding: 15px;
+                font-size: 14px;
+                line-height: 24px;
+            }
+
+            .footer {
+                max-width: 100%;
+                padding: 15px;
+            }
+
+            .footer p {
+                font-size: 11px;
+            }
+
+            /* Table responsive adjustments */
+            table[width="600"] {
+                width: 100% !important;
+            }
+
+            td[width="600"] {
+                width: 100% !important;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .img-logo {
+                width: 180px;
+                height: 43px;
+            }
+
+            .header {
+                padding: 16px 10px;
+            }
+
+            h1 {
+                font-size: 16px;
+            }
+
+            .content {
+                padding: 12px;
+                font-size: 13px;
+                line-height: 22px;
+            }
+
+            .footer {
+                padding: 12px;
+            }
+        }
     </style>
 </head>
 
@@ -103,20 +192,20 @@
     <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f9f9f9" dir="rtl">
         <tr>
             <td align="center" style="padding: 20px 0;">
-                <table width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#f9f9f9" class="img-container">
+                <table width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#f9f9f9" class="img-container" style="max-width: 100%;">
                     <tr>
                         <td align="center" style="background-color: #f9f9f9; padding: 15px;">
-                            <img class="img-logo" src="https://nexumind.com/img/Logo.svg" alt="NexuMind Logo" width="250" height="60" style="display: block;">
+                            <img class="img-logo" src="https://nexumind.com/img/Logo.svg" alt="NexuMind Logo" width="250" height="60" style="display: block; max-width: 100%; height: auto;">
                         </td>
                     </tr>
                 </table>
-                <table width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff" class="container" style="border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                <table width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff" class="container" style="border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); max-width: 100%;">
                     <tr>
                         <td>
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td class="header" style="background: linear-gradient(270deg, #6EC1EA 0%, #5778BA 100%); color: #fff; padding: 24px 16px; text-align: center; border-radius: 4px;">
-                                        <h1>لقد استلمنا طلبك بنجاح في NexuMind</h1>
+                                        <h1>لقد استلمنا رسالتكم بنجاح في NexuMind</h1>
                                     </td>
                                 </tr>
                             </table>
@@ -125,30 +214,27 @@
                     <tr>
                         <td class="content" style="padding: 20px;">
                             <p>مرحبًا {{fullName}}،</p>
-                    <p>نؤكد من خلال هذا البريد الإلكتروني استلامنا لطلبكم</p>
-                            <p>نشكر لك تواصلك معنا.</p>
-                            <p>معلوماتك:</p>
+                    <p>نشكرك على تواصلك معنا، ونؤكد استلامنا لاستفسارك.</p>
+                            <!-- <p>نشكر لك تواصلك معنا.</p> -->
+                            <p>فيما يلي المعلومات التي قمت بتزويدنا بها:</p>
                             <ul>
                                 <li><strong>الاسم الكامل:</strong> {{fullName}}</li>
                                 <li><strong>المسمى الوظيفي:</strong> {{jobTitle}}</li>
                                 <li><strong>اسم الشركة:</strong> {{companyName}}</li>
                             </ul>
-                            <p>سنتواصل معك قريبًا لتحديد موعد لمكالمة تعريفية قصيرة، والإجابة على أسئلتك المحددة، وتزويدك بالمعلومات
-                                التي طلبتها.</p>
+                            <p>سيقوم أحد أعضاء فريقنا بالتواصل معك قريبًا لتحديد موعد لمكالمة تعريفية قصيرة، والإجابة عن استفساراتك، وتزويدك بالمواد المطلوبة.</p>
                        
-                            <p>وفي هذه الأثناء، ندعوك لزيارة موقعنا الإلكتروني على:</p>
-                            <p> <a href="https://nexumind.com/">https://nexumind.com</a></p>
-                            <p>للتعرف على المزيد حول NexuMind والخدمات التي نقدمها.</p>
+                            <p>وفي هذه الأثناء، ندعوك لزيارة موقعنا الإلكتروني على <a href="https://nexumind.com/">https://nexumind.com</a> للتعرف على المزيد حول NexuMind ومنتجاتنا وحلولنا.</p>
                             <br>
                             <p>مع أطيب التحيات،</p>
                             <p>فريق NexuMind</p>
                         </td>
                     </tr>
                 </table>
-                <table width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#f9f9f9" class="footer" style="padding: 20px 0; margin-top: 10px; border-radius: 0 0 8px 8px;">
+                <table width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#f9f9f9" class="footer" style="padding: 20px 0; margin-top: 10px; border-radius: 0 0 8px 8px; max-width: 100%;">
                     <tr>
                         <td align="center">
-                            <p style="color: #9a9ea6; font-size: 12px; margin: 0;">© 2025 NexuMind. جميع الحقوق محفوظة.</p>
+                            <p style="color: #9a9ea6; font-size: 12px; margin: 0;">© {{year}} NexuMind. جميع الحقوق محفوظة.</p>
                         </td>
                     </tr>
                 </table>

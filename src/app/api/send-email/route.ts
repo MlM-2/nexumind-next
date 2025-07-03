@@ -14,6 +14,7 @@ interface FormData {
   recaptchaToken?: string;
   lang?: string;
   skipRecaptcha?: boolean;
+
 }
 
 interface MailOptions {
@@ -28,21 +29,26 @@ interface MailOptions {
 //   sendMail(options: MailOptions): Promise<{ response?: string, [key: string]: any }>;
 // }
 
-function replacePlaceholders(template: string, data: { fullName: string; companyName: string; jobTitle: string }): string {
+function replacePlaceholders(template: string, data: {
+  year: number; fullName: string; companyName: string; jobTitle: string 
+}): string {
 
   return template
     .replace(/{{fullName}}/g, data.fullName)
     .replace(/{{companyName}}/g, data.companyName)
-    .replace(/{{jobTitle}}/g, data.jobTitle);
+    .replace(/{{jobTitle}}/g, data.jobTitle)
+    .replace(/{{year}}/g, data.year.toString());
 }
 
 function proReplacePlaceholders(template: string, data: {
+  year: number;
   businessEmail?: string;
   phone?: string;
   fullName: string;
   companyName: string;
   jobTitle: string;
   message?: string;
+
 }): string {
 
   return template
@@ -51,7 +57,9 @@ function proReplacePlaceholders(template: string, data: {
     .replace(/{{fullName}}/g, data.fullName)
     .replace(/{{companyName}}/g, data.companyName)
     .replace(/{{jobTitle}}/g, data.jobTitle)
-    .replace(/{{message}}/g, data.message || '');
+    .replace(/{{message}}/g, data.message || '')
+    .replace(/{{year}}/g, data.year.toString());
+    
 }
 
 // reCAPTCHA verification function
@@ -154,6 +162,7 @@ export async function POST(request: Request) {
       businessEmail: formData.email,
       phone: formData.phone,
       message: formData.message,
+      year: new Date().getFullYear(),
     };
 
     try {
@@ -181,12 +190,12 @@ export async function POST(request: Request) {
       const customerMailOptions: MailOptions = {
         from: process.env.FROM_EMAIL || 'contact@nexumind.com',
         to: formData.email,
-        subject: language === 'ar' ? 'طلب عرض توضيحي لـ Nexumind' : 'Request a Demo for Nexumind',
+        subject: language === 'ar' ? 'طلب استفسار جديد لـ Nexumind' : 'New Inquiry for Nexumind',
         html: emailHtmlContent,
       };
       const processorMailOptions: MailOptions = {
         from: process.env.FROM_EMAIL || 'contact@nexumind.com',
-        to: process.env.PROCESSOR_EMAIL || 'contact@nexumind.com',
+        to: process.env.FROM_EMAIL || 'contact@nexumind.com',
         subject: 'New Request Received for Nexumind',
         html: processorEmailHtmlContent,
       };
@@ -206,7 +215,7 @@ export async function POST(request: Request) {
           message: 'تم إرسال الطلب بنجاح! سنتواصل معك قريبًا.',
           debug: {
             to: formData.email,
-            processor: process.env.PROCESSOR_EMAIL || 'contact@nexumind.com'
+            processor: process.env.FROM_EMAIL || 'contact@nexumind.com'
           }
         });
       } catch {

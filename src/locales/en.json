@@ -232,6 +232,9 @@
   "email_link_href": "mailto:contact@nexumind.com",
   "footer_copyright": "© 2025 NexuMind. All rights reserved.",
   "company_info": "Company AL-AQL MITRABET For Information Technology. C. R. No. 1009120875",
+  "company_info_line1": "Company AL-AQL MITRABET",
+  "company_info_line2": "For Information Technology.",
+  "company_info_line3": "C. R. No. 1009120875",
   "not_found_page": {
     "title": "404 - Page Not Found",
     "header": "404 - Page Not Found",

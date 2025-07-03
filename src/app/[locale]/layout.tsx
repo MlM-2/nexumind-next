@@ -5,12 +5,12 @@ import { setRequestLocale } from 'next-intl/server';
 import NavBar from '../components/NavBar/NavBar';
 import Footer from '../components/Footer/Footer';
 // import CSSLoader from '../components/CSSLoader'; // Removed as it causes CSS loading issues
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "bootstrap/dist/css/bootstrap.rtl.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.rtl.min.css";
 import { routing } from '../../i18n/routing';
 import { Roboto } from 'next/font/google';
 import { Tajawal } from 'next/font/google';
-import BootstrapLoader from '../components/BootstrapLoader/BootstrapLoader';
+// import BootstrapLoader from '../components/BootstrapLoader/BootstrapLoader';
 import { Metadata } from 'next';
 
 
@@ -154,17 +154,13 @@ export default async function LocaleLayout({
         <link rel="icon" href="/img/favicon.ico" sizes="any" />  
         
         {/* Critical CSS - Load Bootstrap CSS based on language direction */}
-        <BootstrapLoader isArabic={isArabic} />
-        <noscript>
-          <link
-            rel="stylesheet"
-            href={
-              isArabic
-                ? 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap-grid.rtl.min.css'
-                : 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap-grid.min.css'
-            }
-          />
-        </noscript>
+        {/* <BootstrapLoader isArabic={isArabic} /> */}
+        {/* <noscript> */}
+        {/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap-grid.min.css" /> */}
+        {/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap-grid.rtl.min.css" /> */}
+        {/* </noscript> */}
+
+        
         
         {/* Custom CSS - must load before performance optimizations */}
         <link

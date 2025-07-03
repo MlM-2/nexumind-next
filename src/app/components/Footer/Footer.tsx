@@ -91,13 +91,7 @@ const Footer = () => {
     >
       <div className="footer-content ">
         <div className="row align-items-center line-one mb-5">
-          <div
-            className={
-             currentLang == "en"
-                ? "col-12 col-md text-center text-md-start"
-                : "col-12 col-md text-center text-md-end"
-            }
-          >
+          <div className="col-12 col-md-4 text-center">
             <a
               href={"/" +currentLang + footer_line1[0].url}
               className="text-decoration-none"
@@ -112,13 +106,7 @@ const Footer = () => {
               {footer_line1[1].text}
             </a>
           </div>
-          <div
-            className={
-             currentLang == "en"
-                ? "col-12 col-md-2 text-center"
-                : "col-12 col-md-2 text-center"
-            }
-          >
+          <div className="col-12 col-md-4 text-center">
             <img
               width={200}
               height={200}
@@ -129,13 +117,7 @@ const Footer = () => {
               style={{ width: 'auto', height: 'auto', maxHeight: '60px' }}
             />
           </div>
-          <div
-            className={
-             currentLang == "en"
-                ? "col-12 col-md text-center text-md-end text-white"
-                : "col-12 col-md text-center text-md-start text-white"
-            }
-          >
+          <div className="col-12 col-md-4 text-center text-white">
             <div className="social-icons-container flex-md-row">
               <div>
                 <a
@@ -192,11 +174,16 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="row align-items-center line-two">
-          <div className="col text-center">
+        <div className="row align-items-center">
+          <div className="col text-center mt-4" style={{ fontSize: '1.8rem' }}>
             {t("footer_copyright")}
             <br />
-            {t("company_info")}
+            <div className="company-info " style={{ fontSize: '1.8rem' }}>
+              <span className="d-block d-md-inline">{t("company_info_line1")}</span>
+              <span className="d-block d-md-inline"> {t("company_info_line2")}</span>
+              <span className="d-block d-md-inline"> {t("company_info_line3")}</span>
+            </div>
+
           </div>
         </div>
       </div>
