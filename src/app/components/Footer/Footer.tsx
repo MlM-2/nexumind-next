@@ -25,7 +25,7 @@ const Footer = () => {
 
   // ... (useEffect hook remains unchanged)
   useEffect(() => {
-    const scrollToHash = () => {
+   const scrollToHash = () => {
       if (window.scrollY > 0) return;
       const elementId = location.pathname.substring(4);
       if (elementId) {
@@ -62,12 +62,18 @@ const Footer = () => {
             <a
               href={"/" + currentLang + footer_line1[0].url}
               className="text-decoration-none"
+              style={{ color: 'var(--primary-color)', transition: 'color 0.5s' }}
+              onMouseEnter={(e) => (e.target as HTMLElement).style.color = 'var(--body-color)'}
+              onMouseLeave={(e) => (e.target as HTMLElement).style.color = 'var(--primary-color)'}
             >
               {footer_line1[0].text}
             </a>
             <a
               href={"/" + currentLang + footer_line1[1].url}
               className="text-decoration-none ms-3"
+              style={{ color: 'var(--primary-color)', transition: 'color 0.5s' }}
+              onMouseEnter={(e) => (e.target as HTMLElement).style.color = 'var(--body-color)'}
+              onMouseLeave={(e) => (e.target as HTMLElement).style.color = 'var(--primary-color)'}
             >
               {footer_line1[1].text}
             </a>
@@ -89,62 +95,62 @@ const Footer = () => {
           {/* Right Social Icons */}
           <div className="col-12 col-md-4 d-flex justify-content-center justify-content-md-end" style={{ fontSize: '1.5rem' }}>
             <div className="social-icons-container d-flex">
-              <a
-                href="https://x.com/NexuMind"
-                className="mx-2"
-                aria-label="NexuMind on X"
-                target="_blank"
-              >
-                <FontAwesomeIcon
-                  icon={faTwitter}
-                  className="fa-fw social-icons"
-                />
-              </a>
-              <a
-                href="https://youtube.com/@nexumind"
-                className="mx-2"
-                aria-label="NexuMind on Youtube"
-                target="_blank"
-              >
-                <FontAwesomeIcon
-                  icon={faYoutube}
-                  className="fa-fw social-icons"
-                />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/nexumind/"
-                className="mx-2"
-                aria-label="NexuMind on Linkedin"
-                target="_blank"
-              >
-                <FontAwesomeIcon
-                  icon={faLinkedin}
-                  className="fa-fw social-icons"
-                />
-              </a>
-              <a
-                href="https://www.instagram.com/nexumindai"
-                className="mx-2"
-                aria-label="NexuMind on Instagram"
-                target="_blank"
-              >
-                <FontAwesomeIcon
-                  icon={faInstagram}
-                  className="fa-fw social-icons"
-                />
-              </a>
+                <a
+                  href="https://x.com/NexuMind"
+                className="mx-3"
+                  aria-label="NexuMind on X"
+                  target="_blank"
+                >
+                  <FontAwesomeIcon
+                    icon={faTwitter}
+                    className="fa-fw social-icons"
+                  />
+                </a>
+                <a
+                  href="https://youtube.com/@nexumind"
+                className="mx-3"
+                  aria-label="NexuMind on Youtube"
+                  target="_blank"
+                >
+                  <FontAwesomeIcon
+                    icon={faYoutube}
+                    className="fa-fw social-icons"
+                  />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/nexumind/"
+                className="mx-3"
+                  aria-label="NexuMind on Linkedin"
+                  target="_blank"
+                >
+                  <FontAwesomeIcon
+                    icon={faLinkedin}
+                    className="fa-fw social-icons"
+                  />
+                </a>
+                <a
+                  href="https://www.instagram.com/nexumindai"
+                className="mx-3"
+                  aria-label="NexuMind on Instagram"
+                  target="_blank"
+                >
+                  <FontAwesomeIcon
+                    icon={faInstagram}
+                    className="fa-fw social-icons"
+                  />
+                </a>
+              </div>
             </div>
           </div>
-        </div>
 
         {/* Added horizontal line */}
         <hr style={{ borderColor: 'rgba(255, 255, 255, 0.5)', marginTop: '3.5rem', marginBottom: '1.2rem' }} />
 
         <div className="row align-items-center">
-          <div className="col text-center" style={{ fontSize: '1.8rem', marginBottom: '2.5rem' }}>
+          <div className="col text-center" style={{ fontSize: '1.6rem', marginBottom: '2.5rem' }}>
             {t("footer_copyright")}
             <br />
-            <div className="company-info " style={{ fontSize: '1.8rem' }}>
+            <div className="company-info " style={{ fontSize: '1.6rem' }}>
               <span className="d-block d-md-inline">{t("company_info_line1")}</span>
               <span className="d-block d-md-inline"> {t("company_info_line2")}</span>
               <span className="d-block d-md-inline"> {t("company_info_line3")}</span>
