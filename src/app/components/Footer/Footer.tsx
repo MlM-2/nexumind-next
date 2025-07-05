@@ -9,9 +9,8 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useTranslations , useLocale } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useEffect } from "react";
-// import Image from 'next/image'; // Temporarily removed to fix hydration issues
 
 interface Link {
   text: string;
@@ -19,94 +18,63 @@ interface Link {
 }
 
 const Footer = () => {
-  const  t  = useTranslations();
+  const t = useTranslations();
   const currentLang = useLocale();
 
   const footer_line1 = t.raw('footer_line1') as Link[];
 
+  // ... (useEffect hook remains unchanged)
   useEffect(() => {
-   const scrollToHash = () => {
-      // alert(window.scrollY);
+    const scrollToHash = () => {
       if (window.scrollY > 0) return;
-      // console.log(location.pathname.substring(4));
       const elementId = location.pathname.substring(4);
       if (elementId) {
-        // const elementId = hash.substring(1); // Remove the '#' character
         const element = document.getElementById(elementId);
-        console.log(element);
-
         if (element) {
-          // Calculate the top position and apply the offset
           const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = window.scrollY + elementPosition; // window.scrollY + elementPosition - 30 70px offset
-          // console.log(element,elementId);
-
-          // Scroll to the adjusted position smoothly
-          // window.addEventListener("focus", () => {
+          const offsetPosition = window.scrollY + elementPosition;
           window.scrollTo({
             top: offsetPosition,
             behavior: "smooth",
           });
           element.scrollIntoView({ behavior: "smooth" });
-          // });
-
-          // element.scrollIntoView({ behavior: "smooth" });
-
-          // window.scrollTo({
-          //   top: offsetPosition,
-          //   behavior: "smooth",
-          // });
         }
       }
-      // else alert(elementId);
     };
-
-    // Scroll when the component mounts
     scrollToHash();
-
     document.addEventListener("DOMContentLoaded", scrollToHash);
-
-    // Listen for hash changes
     window.addEventListener("focus", scrollToHash);
-
-    // Clean up event listener
     return () => {
       window.removeEventListener("focus", scrollToHash);
       document.removeEventListener("DOMContentLoaded", scrollToHash);
     };
   }, []);
 
+
   return (
-    <footer
-      id="footer"
-      className="footer p-1"
-      // style={{
-      //   position: "fixed",
-      //   bottom: 0,
-      //   left: 0,
-      //   right: 0,
-      //   zIndex: 0,
-      //   height: "100vh",
-      // }}
-    >
+    <footer id="footer" className="footer p-1">
       <div className="footer-content ">
-        <div className="row align-items-center line-one mb-5">
-          <div className="col-12 col-md-4 text-center">
+        {/* Changed row to use flexbox for alignment */}
+        <div className="row align-items-center justify-content-between">
+          
+          {/* Left Elements */}
+          <div className="col-12 col-md-4 d-flex justify-content-center justify-content-md-start mb-4 mb-md-0 mt-4 mt-md-0" style={{ fontSize: '1.8rem' }}>
             <a
-              href={"/" +currentLang + footer_line1[0].url}
+              href={"/" + currentLang + footer_line1[0].url}
               className="text-decoration-none"
             >
               {footer_line1[0].text}
             </a>
-            <span className="mx-2"> </span>
             <a
-              href={"/" +currentLang + footer_line1[1].url}
-              className="text-decoration-none"
+              href={"/" + currentLang + footer_line1[1].url}
+              className="text-decoration-none ms-3"
             >
               {footer_line1[1].text}
             </a>
           </div>
-          <div className="col-12 col-md-4 text-center">
+
+          {/* Center Logo */}
+          <div className="col-12 col-md-auto text-center mb-4 mb-md-0">
             <img
               width={200}
               height={200}
@@ -117,65 +85,63 @@ const Footer = () => {
               style={{ width: 'auto', height: 'auto', maxHeight: '60px' }}
             />
           </div>
-          <div className="col-12 col-md-4 text-center text-white">
-            <div className="social-icons-container flex-md-row">
-              <div>
-                <a
-                  href="https://x.com/NexuMind"
-                  className="mx-4 my-2 my-md-0"
-                  aria-label="NexuMind on X"
-                  target="_blank"
-                >
-                  <FontAwesomeIcon
-                    icon={faTwitter}
-                    className="fa-fw social-icons"
-                  />
-                </a>
-              </div>
-              <div>
-                <a
-                  href="https://youtube.com/@nexumind"
-                  className="mx-4 my-2 my-md-0"
-                  aria-label="NexuMind on Youtube"
-                  target="_blank"
-                >
-                  <FontAwesomeIcon
-                    icon={faYoutube}
-                    className="fa-fw social-icons"
-                  />
-                </a>
-              </div>
-              <div>
-                <a
-                  href="https://www.linkedin.com/company/nexumind/"
-                  className="mx-4 my-2 my-md-0"
-                  aria-label="NexuMind on Linkedin"
-                  target="_blank"
-                >
-                  <FontAwesomeIcon
-                    icon={faLinkedin}
-                    className="fa-fw social-icons"
-                  />
-                </a>
-              </div>
-              <div>
-                <a
-                  href="https://www.instagram.com/nexumindai"
-                  className="mx-4 my-2 my-md-0"
-                  aria-label="NexuMind on Instagram"
-                  target="_blank"
-                >
-                  <FontAwesomeIcon
-                    icon={faInstagram}
-                    className="fa-fw social-icons"
-                  />
-                </a>
-              </div>
+          
+          {/* Right Social Icons */}
+          <div className="col-12 col-md-4 d-flex justify-content-center justify-content-md-end" style={{ fontSize: '1.5rem' }}>
+            <div className="social-icons-container d-flex">
+              <a
+                href="https://x.com/NexuMind"
+                className="mx-2"
+                aria-label="NexuMind on X"
+                target="_blank"
+              >
+                <FontAwesomeIcon
+                  icon={faTwitter}
+                  className="fa-fw social-icons"
+                />
+              </a>
+              <a
+                href="https://youtube.com/@nexumind"
+                className="mx-2"
+                aria-label="NexuMind on Youtube"
+                target="_blank"
+              >
+                <FontAwesomeIcon
+                  icon={faYoutube}
+                  className="fa-fw social-icons"
+                />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/nexumind/"
+                className="mx-2"
+                aria-label="NexuMind on Linkedin"
+                target="_blank"
+              >
+                <FontAwesomeIcon
+                  icon={faLinkedin}
+                  className="fa-fw social-icons"
+                />
+              </a>
+              <a
+                href="https://www.instagram.com/nexumindai"
+                className="mx-2"
+                aria-label="NexuMind on Instagram"
+                target="_blank"
+              >
+                <FontAwesomeIcon
+                  icon={faInstagram}
+                  className="fa-fw social-icons"
+                />
+              </a>
             </div>
           </div>
         </div>
+
+        {/* Added horizontal line */}
+        <hr style={{ borderColor: 'rgba(255, 255, 255, 0.5)', marginTop: '3.5rem', marginBottom: '1.2rem' }} />
+
         <div className="row align-items-center">
-          <div className="col text-center mt-4" style={{ fontSize: '1.8rem' }}>
+          <div className="col text-center" style={{ fontSize: '1.8rem', marginBottom: '2.5rem' }}>
             {t("footer_copyright")}
             <br />
             <div className="company-info " style={{ fontSize: '1.8rem' }}>
@@ -183,7 +149,6 @@ const Footer = () => {
               <span className="d-block d-md-inline"> {t("company_info_line2")}</span>
               <span className="d-block d-md-inline"> {t("company_info_line3")}</span>
             </div>
-
           </div>
         </div>
       </div>
