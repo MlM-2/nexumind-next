@@ -61,9 +61,9 @@ export default function ShowNews({ slug }: ShowNewsProps) {
             </a>
             {tNews("paragraph_1_part3")}
           </p>
-          <h2>{tNews("section_2_title")}</h2>
+          <h1>{tNews("section_2_title")}</h1>
           <p>{tNews("section_2_paragraph")}</p>
-          <h2>{tNews("section_3_title")}</h2>
+          <h1>{tNews("section_3_title")}</h1>
           <p>
             {tNews("section_3_paragraph_part1")}
             <strong>{tNews("section_3_amazon_bold")}</strong>
@@ -73,7 +73,7 @@ export default function ShowNews({ slug }: ShowNewsProps) {
             <strong>{tNews("section_3_preplixty_bold")}</strong>
             {tNews("section_3_part4")}
           </p>
-          <h2>{tNews("section_4_title")}</h2>
+          <h1>{tNews("section_4_title")}</h1>
           <p>{tNews("section_4_paragraph")}</p>
           <ul lang={currentLocale}>
             <li>
@@ -89,11 +89,11 @@ export default function ShowNews({ slug }: ShowNewsProps) {
               {tNews("section_4_list_item_3_rest")}
             </li>
           </ul>
-          <h2>{tNews("section_5_title")}</h2>
+          <h1>{tNews("section_5_title")}</h1>
           <p>{tNews("section_5_paragraph")}</p>
-          <h2>{tNews("section_6_title")}</h2>
+          <h1>{tNews("section_6_title")}</h1>
           <p>{tNews("section_6_paragraph")}</p>
-          <h2>{tNews("section_7_title")}</h2>
+          <h1>{tNews("section_7_title")}</h1>
           <p>{tNews("section_7_paragraph_1")}</p>
           <p>{tNews("section_7_paragraph_2")}</p>
         </div>
